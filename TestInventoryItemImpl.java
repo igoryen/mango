@@ -4,26 +4,7 @@
 import java.io.*;
 import java.util.*;
 
-/**
- * Application which displays a welcome message on standard output. <p>This program illustrates a
- * "divide and conquer' strategy to make the program more Object Oriented </p>
- * 
-* <p>The basic design of this application will be used for most applications in this and the
- * following Java course(s). This design is no accident! It is based on he idea that things have a
- * "correct" place, which the experience of many professional programmers have confirmed has many
- * advantages</p>
- * 
-* <p>The biggest single advantage of this is the way the main() int(), run() and wrap() to organize
- * the rest of the program. It sets the practice that will be extended later. There is no need for
- * any other instructions to be added to main() so that code will NEVER have to be written again
- * (for the rest of your programming life!).</p>
- *
- * <p>For the time being you are asked to take that as true and follow this example so that the
- * advantages can be revealed in due course.</p>
- * 
-* @version 1.0
- * @author Brian Perry
- */
+
 public class TestInventoryItemImpl
 {
   //===================static data
@@ -33,13 +14,15 @@ public class TestInventoryItemImpl
   /**
    * In which to store args from command line
    */
-  // to store command-line args  as instance var(s)
+
   public DataReaderImpl_1 dri;
 
   //==================constructors
   // none defined ( :. default constructor provided by compiler )
+  
   //===================methods
   //===========(alphabetic by method name)
+  
   // ----------Method printNumLoose() 
   // prints 0      1      2      3...
   private void printNumLoose()
@@ -124,16 +107,16 @@ public class TestInventoryItemImpl
     {
       while (returned == 0)
       {
-        System.out.println("\n --- csv:StringBuffer after getData() is: " + csv);
+                //System.out.println("\n --- csv:StringBuffer after getData() is: " + csv);
         
         nemo = new InventoryItemImpl();
-        System.out.println("nemo, immdiately after construction, follows");
+                //System.out.println("nemo, immdiately after construction, follows");
         sb.setLength(0);
         returned = nemo.formatDisplay(sb);
         System.out.println(sb);
 
         nemo.update(csv);
-        System.out.println("nemo, immdiately after update(), follows");
+                //System.out.println("nemo, immdiately after update(), follows");
         sb.setLength(0);
         returned = nemo.formatDisplay(sb);
         System.out.println(sb);
