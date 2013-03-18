@@ -13,6 +13,7 @@ public interface Testable
 {
   // the public instance methods in the interface
   public int formatDisplay(StringBuffer sbuf);
+  
   public int update(StringBuffer sb);
   // uncomment the following (which no class implements) to force a compile error 
   // public void imaginary(String ghost);
