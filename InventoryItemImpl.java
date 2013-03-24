@@ -184,7 +184,7 @@ public class InventoryItemImpl implements InventoryItem, Testable
       sb.append("                        Last-Upd        RepOrd In Stk  SalOrd\n");
       sb.append("--------------------------------------------------------------\n");
       sb.append("\n"+ lineOfDashes);
-      System.out.println("[exited formatReportHeadings_1().sb: (" +sb +")]");
+      
     }
     catch (Exception e)
     {
@@ -428,7 +428,7 @@ public class InventoryItemImpl implements InventoryItem, Testable
     {
       // The sb:StringBuffer passed as parameter 1 is in CSV format and was produced by getData() above.  
       sep = String.valueOf(sb.charAt(0)); // separator value used by CSV format data     
-              System.out.println("in update(), sep: ("+sep+")");
+              
       tk = new StringTokenizer(sb.toString(), sep); //Creates a StringTokenizer [to extract data items] using the first character of the StringBuffer as the separator.       
 
 

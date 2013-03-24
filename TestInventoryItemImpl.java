@@ -57,12 +57,11 @@ public class TestInventoryItemImpl
    */
   private String init(String[] args)
   {
-       System.out.println("[Entered init()]");
+       
     String temp = "";
        
     dri = new DataReaderImpl_1(); // create rto:DataReaderImpl_1
-       System.out.println("[in init(). created dri.]");
-       System.out.println("[Exited init()]");
+       
     return temp;
   } // end of init()
 
@@ -73,7 +72,7 @@ public class TestInventoryItemImpl
    */
   private void run()
   {
-       System.out.println("[Entered run()]");
+      
     int counter = 0;    
     StringBuffer csv = new StringBuffer(128); //"comma separated values" - empty string for getData()/update()
     InventoryItemImpl nemo;
@@ -126,7 +125,7 @@ public class TestInventoryItemImpl
             
               
           }
-          System.out.println("[Exited run()]");
+          
   }  // end of run()
 
   //-------------------------usage()
@@ -145,7 +144,7 @@ public class TestInventoryItemImpl
    */
   private int wrap()
   {
-    System.out.println("[Entered wrap()]");
+    
     int retval = 0;
     printNumLoose();
     printNumClose();
@@ -161,9 +160,7 @@ public class TestInventoryItemImpl
     printNumLoose();
 
     dri.close();
-    System.out.println("[did dri.close()]");
-    System.out.println("[Exited wrap()]");
-
+   
     return retval;
   }  // end of wrap()
 
@@ -176,13 +173,13 @@ public class TestInventoryItemImpl
   public static void main(String[] args)
     throws IOException
   {
-       System.out.println("[entered main()");
+       
     TestInventoryItemImpl theApp = new TestInventoryItemImpl(); // make object of own class
 
     theApp.init(args);                        // then call its methods
     theApp.run();
     theApp.wrap();
-       System.out.println("[exited main()");
+       
 
   } // end of main()
 } // end of class
