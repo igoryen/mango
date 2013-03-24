@@ -81,35 +81,31 @@ public class TestInventoryItemImpl
     StringBuffer sb = new StringBuffer(128); // empty string for displaying
     
     System.out.println("\n------------------ Test "+ ++counter + " started ----------------");    
-    //System.out.println("in run() BEFORE getData(), csv: ("+csv+")");
+   
     returned = InventoryItemImpl.getData(csv,dri,"~"); // load csv with first input (items separated by tilde) 
-    //System.out.println("in run() AFTER getData(), csv: ("+csv+")");
+
     
           if (returned == -3) // if iii.getData() returned err=-3 (which is special case for array "prompts" empty
           {      
             nemo = new InventoryItemImpl(); // instantialize :InventoryItemImpl      
             nemo.formatDisplay(sb); // there may still be instance vars initialized by the constructor
             System.out.println(sb);  
-               //System.out.println("there are no prompts");
+            
           }    
           
           else // if iii.getData() returned err=0, i.e. if array "prompts" is not empty
           {
             while (returned == 0) // loop as long as getData() works fine
-            {                //System.out.println("\n --- csv:StringBuffer after III.getData() is: " + csv);        
+            {                   
               nemo = new InventoryItemImpl(); // instantiate III
-                             //System.out.println("nemo, immdiately after construction, follows: (" + nemo+")");
+                            
               
               sb.setLength(0); // empty the sb:StringBuffer used for displaying
               returned = nemo.formatDisplay(sb);  // pass empty sb to formatDisplay(); fill sb with values. returned=0 (if normal)
               
-              //System.out.println("[run() prints sb]");
-              //System.out.println(sb);           // print out the loaded sb
-              //               System.out.println("in run(), csv: ("+csv+")");
               
               nemo.update(csv);                // pass the csv loaded above to update()
-                             //System.out.println("nemo, immdiately after III.update(), follows(" + nemo+")");
-              
+             
               sb.setLength(0);
               
               returned = nemo.formatDisplay(sb);

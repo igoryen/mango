@@ -48,7 +48,7 @@ public class InventoryItemImpl implements InventoryItem, Testable
   // Class InventoryItemImpl has only the following constructor:
   public InventoryItemImpl()
   {
-       System.out.println("Entered InventoryItemImpl constructor");
+       
     //It should initialize all non-primitive data items to sensible values.  
     //The primitive should all have their default values.
     inventoryId = "";
@@ -60,8 +60,7 @@ public class InventoryItemImpl implements InventoryItem, Testable
     reorderQuantity = 0;
     totalOrdered = 0;
     totalSalesOrders = 0;
-       System.out.println("exited InvItemImpl constructor");
-
+       
   }
 
   //------------------------------------------------------
@@ -74,11 +73,11 @@ public class InventoryItemImpl implements InventoryItem, Testable
   // ---------Method 1. decreaseStock()
   public String decreaseStock(int decAmount)
   {
-    System.out.println("[entered decreaseStock()]");
+    
 
     String outMsg = "";
 
-    //System.out.print("(i40)");
+    
 
     try
     {
@@ -115,36 +114,18 @@ public class InventoryItemImpl implements InventoryItem, Testable
       System.out.println("... stack trace follows ...");
       e.printStackTrace(System.out);
     }
-    System.out.println("[exited decreaseStock()]");
+    
     return outMsg;
   }
 
-  //System.out.print("(i50)");
-  //Substitutes data values for [decAmount] and [inventoryId]. ????
-  // If the calculation of “quantityInStock plus totalOrdered less totalSalesOrders” 
-  // is now less than value of the reorderPoint
-  //System.out.print("(i60)");
-  //System.out.print("(i70)");
-  //System.out.print("(i80)");
-  // then  place an order for replenishment (call placeReplenishmentOrder())  with repeats as necessary. 
-  //System.out.print("(i90)");
-  //System.out.print("(i100)");
-  // Note that the strings that may be returned from placeReplenishmentOrder 
-  //should appear appended as part of the outMsg to be returned by this method.  
-  // Those outMsgs should appear after the “Decreased stock...” text 
-  // and there should be a single space separating each of the strings concerned.
-  //System.out.print("(i110)");
-  //System.out.print("(i120)");
+ 
   // --------- Method 2. formatDisplay() -------------------------------------------------------
   public int formatDisplay(StringBuffer sb)
   {
-    System.out.println("[entered formatDisplay()]");
+    
     int retval = 0;
     sb.append("\n" + "+++++++ formatDisplay() start ++++++++");
-    // Append the data from one object to the StringBuffer passed as parameter 1.  
-    // This method will be used primarily for testing/checking purposes 
-    // so that it is desirable that it be in a format that is easy for YOU to read, 
-    // with every instance item displayed.
+    
     sb.append("\n" + "inventoryId     : " + inventoryId);
     sb.append("\n" + "description     : " + description);
     sb.append("\n" + "pack            : " + pack);
@@ -155,19 +136,16 @@ public class InventoryItemImpl implements InventoryItem, Testable
     sb.append("\n" + "totalOrdered    : " + totalOrdered);
     sb.append("\n" + "totalSalesOrders: " + totalSalesOrders);
     sb.append("\n" + "+++++++ formatDisplay() finish ++++++++");
-       System.out.println("[finished loading sb with values]");
-       //System.out.println("formatDisplay().sb (After call from run()) : ("+sb+")");
-    System.out.println("[exited formatDisplay()]");
+
     return retval;
   }
 
   // -------- Method 3.  formatReportData_1()------------------------------------------------------------
   public int formatReportData_1(StringBuffer sb)
   {
-    System.out.println("[entered formatReportData_1()]");
 
-    // Append  the data from one object, formatted for Report 1, to the StringBuffer passed as parameter 1.  
-    // The format of Report 1 is described in an accompanying document.
+
+   
     int retval = 0;
 
     // String EOL = new String(System.getProperty("line.separator"));
@@ -176,8 +154,7 @@ public class InventoryItemImpl implements InventoryItem, Testable
     {
       sb.append(inventoryId + "\t" + description + "\t" + pack + "\t" + reorderPoint + "\t" + reorderQuantity + "\t" + unitPrice);
       sb.append(lastUpdated + "\t" + totalOrdered + "\t" + quantityInStock + "\t" + totalSalesOrders);
-      
-      System.out.println("formatReportData_1().sb: (" + sb +")" );
+
     }
     catch (Exception e)
     {
@@ -185,17 +162,14 @@ public class InventoryItemImpl implements InventoryItem, Testable
       System.out.println("... stack trace follows ...");
       e.printStackTrace(System.out);
     }
-    System.out.println("[exited formatReportData_1()]");
     return retval;
   }
 
   // -------- Method 4. formatReportHeadings_1()
   public static int formatReportHeadings_1(StringBuffer sb)
-  {
-    System.out.println("[entered formatReportHeadings_1()]");
+  {    
     int retval = 0;
-    // Append  the headings, formatted for Report 1, to the StringBuffer passed as parameter 1.  
-    // The format of Report 1 is described on an accompanying document.
+    
     try
     {
       String lineOfDashes = "";
@@ -218,7 +192,6 @@ public class InventoryItemImpl implements InventoryItem, Testable
       System.out.println("... stack trace follows ...");
       e.printStackTrace(System.out);
     }
-    System.out.println("[exited formatReportHeadings_1()]");
     return retval;
   }
 
@@ -227,7 +200,7 @@ public class InventoryItemImpl implements InventoryItem, Testable
   public static int getData(StringBuffer sb, DataReaderImpl_1 br, String separator) // sb<csv, br<dri, separator<"~"
     //throws IOException
   {
-    System.out.println("[entered getData()]");
+    
     int err = 0; // error code
     try
     {
@@ -266,7 +239,6 @@ public class InventoryItemImpl implements InventoryItem, Testable
       System.out.println("... stack trace follows ...");
       e.printStackTrace(System.out);
     } // end of catch{}
-    System.out.println("\n[exited getData()]");
 
     return err; // returns an int to TestInventoryItemImpl.return
   }
@@ -274,22 +246,18 @@ public class InventoryItemImpl implements InventoryItem, Testable
   // -------- Method 6. getPrimaryKey() ---------------------------------------------
   public String getPrimaryKey()
   {
-    System.out.println("[entered getPrimaryKey()]");
-    System.out.println("[entered formatReportHeadings_1()]");
     String pk = "";
 
     if (!inventoryId.contains(" ")) // The primary key data should NOT include any spaces. check: does "inventoryId" contain spaces?
     {
       pk = inventoryId;
     }
-    System.out.println("[exited getPrimaryKey()]");
     return pk; // Returns the value of inventoryId (to be used as the key for a Hashtable or database primary key or similar purpose).
   }
 
   // --------Method 7. increaseStock()------------------------------------------------------
   public String increaseStock(int incAmount)
   {
-    System.out.println("[entered increaseStock()]");
     String outMsg = "";
     try
     {
@@ -304,7 +272,7 @@ public class InventoryItemImpl implements InventoryItem, Testable
       {
         quantityInStock += incAmount; // Increases the quantityInStock by the amount passed as parameter 1. 
         outMsg = "Increased stock of " + inventoryId + " by " + incAmount;
-        // (substitutes data values for [incAmount] and [inventoryId]). 
+        // (substitutes data values for [incAmount] and [inventoryId]). ??
 
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(Calendar.getInstance().getTime());
         lastUpdated = timeStamp; // Stores the current date and time in lastUpdated
@@ -316,7 +284,6 @@ public class InventoryItemImpl implements InventoryItem, Testable
       System.out.println("... stack trace follows ...");
       e.printStackTrace(System.out);
     } // end of catch{}
-    System.out.println("[exited increaseStock()]");
 
     return outMsg;
   }
@@ -324,7 +291,6 @@ public class InventoryItemImpl implements InventoryItem, Testable
   // ----------- Method 8. placeReplenishmentOrder()------------------------------------------
   private String placeReplenishmentOrder()
   {
-        System.out.println("[entered placeReplenishmentOrder)]");
     String outMsg = "";
 
     try
@@ -347,14 +313,12 @@ public class InventoryItemImpl implements InventoryItem, Testable
       System.out.println("... stack trace follows ...");
       e.printStackTrace(System.out);
     } // end of catch{}
-    System.out.println("[exited placeReplenishmentOrder)]");
     return outMsg;
   }
   // ------------------ Method 9. placeSalesOrder() -----------------------------------
 
   public String placeSalesOrder(int qtyOrdered)
   {
-    System.out.println("[entered placeSalesOrder)]");
     String outMsg = "";
     try
     {
@@ -375,14 +339,12 @@ public class InventoryItemImpl implements InventoryItem, Testable
       System.out.println("... stack trace follows ...");
       e.printStackTrace(System.out);
     } // end of catch{}
-    System.out.println("[exited placeSalesOrder)]");
     return outMsg;
   }
 
   // ---------- Method 10. receiveReplenishment()----------------------------------------------------
   public String receiveReplenishment(int qtyReceived)
   {
-    System.out.println("[entered receiveReplenishmentOrder)]");
     String outMsg = "";
 
     try
@@ -411,7 +373,6 @@ public class InventoryItemImpl implements InventoryItem, Testable
       System.out.println("... stack trace follows ...");
       e.printStackTrace(System.out);
     } // end of catch{}
-    System.out.println("[exited receiveReplenishmentOrder)]");
 
 
     return outMsg;
@@ -422,7 +383,7 @@ public class InventoryItemImpl implements InventoryItem, Testable
   
   public String shipSalesOrder(int qtyShipped)
   {
-    System.out.println("[entered shipSalesOrder)]");
+    
     String outMsg = "";
 
     try
@@ -448,7 +409,6 @@ public class InventoryItemImpl implements InventoryItem, Testable
       System.out.println("... stack trace follows ...");
       e.printStackTrace(System.out);
     } // end of catch{}
-    System.out.println("[exited shipSalesOrder)]");
 
     return outMsg;
   }
@@ -457,7 +417,6 @@ public class InventoryItemImpl implements InventoryItem, Testable
   
   public int update(StringBuffer sb) // sb < csv
   {
-    System.out.println("[entered update()]"); 
     int err = 0; // to indicate status (normal = 0)
     String sep = "";    
     StringTokenizer tk; // to extract data
@@ -550,7 +509,6 @@ public class InventoryItemImpl implements InventoryItem, Testable
     } // end of catch{}
 
 
-    System.out.println("[exited update()]");
 
     return err;
 
@@ -559,7 +517,6 @@ public class InventoryItemImpl implements InventoryItem, Testable
 
   public static String[] persistData(Hashtable<Integer, InventoryItemImpl> table, String keyValue)
   {
-    System.out.println("[entered persistData()]");
     String[] retval = new String[3];
     InventoryItemImpl item;
 
@@ -599,7 +556,6 @@ public class InventoryItemImpl implements InventoryItem, Testable
     {
       System.out.println("Esception caught in abc() " + e.getMessage() + e.getCause());
     }
-    System.out.println("[exited persistData()]");
     return retval;
   }
 } // end class InventoryItemImpl
