@@ -1,5 +1,5 @@
 // uncomment the line below when in proper directory tree
-//package business; // because it will only be used by Business Classes
+package business; // because it will only be used by Business Classes
 import java.io.*;
 // Testable.java - Testable interface
 /**

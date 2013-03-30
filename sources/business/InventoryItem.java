@@ -1,5 +1,5 @@
 // uncoment the  line below when in proper environment
-// package business; ////(in package business in file InventoryItem.java)
+package business; ////(in package business in file InventoryItem.java)
 
 interface InventoryItem
 {

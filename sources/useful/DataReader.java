@@ -1,6 +1,6 @@
-//package useful;
+package useful;
 
-//import java.io.*;
+import java.io.*;
 
 
 public interface DataReader

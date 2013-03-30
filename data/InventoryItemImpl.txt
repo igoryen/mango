@@ -1,0 +1,96 @@
+# id 
+# description
+# pack
+# quantity in stock
+# unit price
+# reorder point
+# reorder quantity
+# total ordered
+# total sales orders
+#
+# ------------------------Product 1-------------------
+12345      # id 
+Thingies   # description
+Box of 100 # pack
+169        # quantity in stock
+50.00      # unit price
+150        # reorder point
+100        # reorder quantity
+1200       # total ordered
+145        # total sales orders
+# ------------------------Product 2-------------------
+23456
+Wajmacallits 
+Carton of 1000
+6
+450.00
+75
+25
+20
+3
+# ------------------------Product 3-------------------
+34567
+Widgets
+Packet of 500
+9
+9.99
+9
+25
+15
+10
+# ------------------------ my Product 1-------------------
+45678      # id 
+Oil        # description
+Drum of 40 l # pack
+70         # quantity in stock
+100.00     # unit price
+30         # reorder point
+60         # reorder quantity
+80         # total ordered
+20         # total sales orders
+#
+# ------------------------ my Product 2-------------------
+56789      # id 
+Coffee     # description
+Can of 300 ml # pack
+50         # quantity in stock
+10.00      # unit price
+40         # reorder point
+20         # reorder quantity
+50         # total ordered
+40         # total sales orders
+#
+# ------------------------ my Product 3-------------------
+67890      # id 
+Steel      # description
+Bar of 10 kg# pack
+66         # quantity in stock
+66.00      # unit price
+50         # reorder point
+30         # reorder quantity
+60         # total ordered
+6          # total sales orders
+#
+# ------------------------ my Product 4-------------------
+78901      # id 
+Gold       # description
+Bar of 300 mg# pack
+70         # quantity in stock
+999.00     # unit price
+37         # reorder point
+57         # reorder quantity
+70         # total ordered
+7          # total sales orders
+#
+# ------------------------ my Product 5-------------------
+89012      # id 
+Wheat      # description
+Bag of 20 kg# pack
+90         # quantity in stock
+30.00      # unit price
+80         # reorder point
+50         # reorder quantity
+120        # total ordered
+12         # total sales orders
+#
+#
