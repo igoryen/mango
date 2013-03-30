@@ -6,7 +6,7 @@ import java.io.*;
 import useful.*;
 import java.math.BigDecimal;
 
-
+// igor
 public class InventoryItemImpl implements InventoryItem, Testable, Serializable
 {
 
@@ -371,13 +371,6 @@ public class InventoryItemImpl implements InventoryItem, Testable, Serializable
 
     // =================== 1) create a hash map =============================================
     
-    // Hashtable <String, String> ht = new Hashtable<String, String>(); // = hash table
-    Hashtable <String, String> ht = new Hashtable<String, String>(); // ht = hash table
-    Enumeration htk;
-    Enumeration htik; // htik = hashtable (inflated) keys 
-    String htiks; // htiks = hashtable (inflated) keys as strings
-    BigDecimal bd;
-    
     // ====================== filling the hashtable with rows ================================
 
     try // try 1
@@ -391,21 +384,21 @@ public class InventoryItemImpl implements InventoryItem, Testable, Serializable
       if (!temp.equals("\t"))
       {
         inventoryId = new String(temp); // 25
-        ht.put("Inventory ID", new String(inventoryId)); // 26
+        //ht.put("Inventory ID", new String(inventoryId)); // 26
       }
 
       temp = st.nextToken();
       if (!temp.equals("\t"))
       {
         description = new String(temp);
-        ht.put("Description", new String(description));
+        //ht.put("Description", new String(description));
       }
 
       temp = st.nextToken();
       if (!temp.equals("\t"))
       {
         pack = new String(temp);
-        ht.put("Packaging", new String(pack));
+        //ht.put("Packaging", new String(pack));
       }
 
       temp = st.nextToken();
@@ -413,7 +406,7 @@ public class InventoryItemImpl implements InventoryItem, Testable, Serializable
       {
         quantityInStock = Integer.parseInt(temp);
         //ht.put("Qty in stock", new Integer(quantityInStock));
-        ht.put("Qty in stock", new String(String.valueOf(quantityInStock))); // 27
+        //ht.put("Qty in stock", new String(String.valueOf(quantityInStock))); // 27
       }
 
       temp = st.nextToken();
@@ -422,7 +415,7 @@ public class InventoryItemImpl implements InventoryItem, Testable, Serializable
         unitPrice = Double.parseDouble(temp);
         //ht.put("Unit price", new Double(unitPrice));
         //bd = new BigDecimal(unitPrice);
-        ht.put("Unit price", new String(String.valueOf(unitPrice))); // 27
+        //ht.put("Unit price", new String(String.valueOf(unitPrice))); // 27
         
         //ht.put("Unit price", new String(String.valueOf(new BigDecimal(unitPrice)))); // 
       }
@@ -431,34 +424,34 @@ public class InventoryItemImpl implements InventoryItem, Testable, Serializable
       if (!temp.equals("\t"))
       {
         reorderPoint = Integer.parseInt(temp);
-        ht.put("Reorder point", new String(String.valueOf(reorderPoint)));
+        //ht.put("Reorder point", new String(String.valueOf(reorderPoint)));
       }
 
       temp = st.nextToken();
       if (!temp.equals("\t"))
       {
         reorderQuantity = Integer.parseInt(temp);
-        ht.put("Reorder qty", new String(String.valueOf(reorderQuantity)));
+        //ht.put("Reorder qty", new String(String.valueOf(reorderQuantity)));
       }
 
       temp = st.nextToken();
       if (!temp.equals("\t"))
       {
         totalOrdered = Integer.parseInt(temp);
-        ht.put("Total ordered", new String(String.valueOf(totalOrdered)));
+        //ht.put("Total ordered", new String(String.valueOf(totalOrdered)));
       }
 
       temp = st.nextToken();
       if (!temp.equals("\t"))
       {
         totalSalesOrders = Integer.parseInt(temp);
-        ht.put("Tot.Sal.Orders", new String(String.valueOf(totalSalesOrders)));
+        //ht.put("Tot.Sal.Orders", new String(String.valueOf(totalSalesOrders)));
       }
 
       String timeStamp = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime()); //yyyy-M-dd_HH:mm:ss
       lastUpdated = timeStamp;
 
-      ht.put("Last updated", new String(lastUpdated));
+      //ht.put("Last updated", new String(lastUpdated));
       
       //=== print out the contents of the hashtable =======================================
 /*
@@ -471,15 +464,7 @@ public class InventoryItemImpl implements InventoryItem, Testable, Serializable
       }
       */
       // === deflating the hashtable start ==============================================
-
-
-      FileOutputStream fos = new FileOutputStream("../data/Assign1.ser"); // 29
-      ObjectOutputStream oos = new ObjectOutputStream(fos); // 30 
-
-      oos.writeObject(ht);  // 31 
-      System.out.println("\n--- ht has been serialized/deflated.");
-      oos.close(); // 32
-      fos.close();
+      
       // === deflating the hashtable finish ==============================================
 
       
@@ -488,7 +473,7 @@ public class InventoryItemImpl implements InventoryItem, Testable, Serializable
       // === work with the deflated hashtable (finish) ================================================
 
 
-    }
+    } // finish fill ht with rows
     catch (Exception e)
     {
       System.out.println("Caught exception in update() : " + e.getMessage());
