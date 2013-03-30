@@ -19,7 +19,12 @@ public class TestInventoryItemImpl
   //Hashtable<String, String>[] ht = (Hashtable<String, String>[]) new Hashtable<?, ?>[10]; // 78
   //Hashtable<String, String>[] ht = (Hashtable<String, String>[]) new Hashtable[10]; // 78
   //Hashtable<String, String>[] ht = new Hashtable[10]; // 78
-  Hashtable[] ht = new Hashtable[10]; // 78
+  private Hashtable[] ht; // 78
+  //private Hashtable [] ht; //
+  //private Hashtable [] hti;
+  
+  private InventoryItemImpl _nemo;
+  
 
   //private Hashtable[] ht = new Hashtable[10]; // 78
   //private Hashtable[] ht; // 78
@@ -101,7 +106,8 @@ public class TestInventoryItemImpl
     // Hashtable <String, String> ht = new Hashtable<String, String>(); // = hash table
     //Hashtable <String, String> ht = new Hashtable<String, String>(); // ht = hash table
     Enumeration htk;
-    Enumeration htik; // htik = hashtable (inflated) keys 
+    Enumeration htik; // htik = hashtable (inflated) keys
+    
     String htiks; // htiks = hashtable (inflated) keys as strings
     //BigDecimal bd;
     int htai = 0; // hash-table's array's index
@@ -141,123 +147,9 @@ public class TestInventoryItemImpl
             + "\nTesting method 5/12: getData(csv,dri,\"~\"). \nResult: csv (non-tokenized): " + csv
             + hr);
 
-          /*
-           //=============== creating a hashtable start ============================================================
-
-           sep = String.valueOf(csv.charAt(0)); // extract the first character, which is the delimiter tilda
-           st = new StringTokenizer(csv.toString(), sep); // tokenize $csv 
-
-
-
-           try
-           {
-           //========= fill a hashtable start ======================================================================
-           ht[htai] = new Hashtable(); // 78
-           System.out.println(" hash-table n has been created");
-
-           temp = st.nextToken(); // 24
-           if (!temp.equals("\t"))
-           {
-           ht[htai].
-           put("Inventory ID",
-           new String(temp)); // 26
-           }
-
-           temp = st.nextToken();
-           if (!temp.equals("\t"))
-           {
-           ht[htai].put("Description", new String(temp));
-           }
-
-           temp = st.nextToken();
-           if (!temp.equals("\t"))
-           {
-           ht[htai].put("Packaging", new String(temp));
-           }
-
-           temp = st.nextToken();
-           if (!temp.equals("\t"))
-           {
-           //ht.put("Qty in stock", new Integer(quantityInStock));
-           ht[htai].put("Qty in stock", new String(String.valueOf(temp))); // 27
-           }
-
-           temp = st.nextToken();
-           if (!temp.equals("\t"))
-           {
-           //unitPrice = Double.parseDouble(temp);
-           //ht.put("Unit price", new Double(unitPrice));
-           //bd = new BigDecimal(unitPrice);
-           ht[htai].put("Unit price", new String(String.valueOf(temp))); // 27
-
-           //ht.put("Unit price", new String(String.valueOf(new BigDecimal(unitPrice)))); // 
-           }
-
-           temp = st.nextToken();
-           if (!temp.equals("\t"))
-           {
-           //reorderPoint = Integer.parseInt(temp);
-           ht[htai].put("Reorder point", new String(String.valueOf(temp)));
-           }
-
-           temp = st.nextToken();
-           if (!temp.equals("\t"))
-           {
-           //reorderQuantity = Integer.parseInt(temp);
-           ht[htai].put("Reorder qty", new String(String.valueOf(temp)));
-           }
-
-           temp = st.nextToken();
-           if (!temp.equals("\t"))
-           {
-           //totalOrdered = Integer.parseInt(temp);
-           ht[htai].put("Total ordered", new String(String.valueOf(temp)));
-           }
-
-           temp = st.nextToken();
-           if (!temp.equals("\t"))
-           {
-           //totalSalesOrders = Integer.parseInt(temp);
-           ht[htai].put("Tot.Sal.Orders", new String(String.valueOf(temp)));
-           }
-
-           String timeStamp = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime()); //yyyy-M-dd_HH:mm:ss
-           //lastUpdated = timeStamp;
-
-           ht[htai].put("Last updated", new String(timeStamp));
-
-           System.out.println(" hash-table n has been filled");
-
-           //========= fill a hashtable finish ====================================================================
-
-
-           }
-           catch (Exception e)
-           {
-           System.out.println("Caught exception in wrap(): " + e.getMessage());
-           System.out.println("... stack trace follows ...");
-           e.printStackTrace(System.out);
-           }
-           //================creating a hashtable finish ===========================================================
-           */
-
-
-
-
-
-
-
-
           nemo = new InventoryItemImpl();     // 67        
           System.out.println("\nAn object created.");
 
-
-          
-
-
-
-          //returned = nemo.getData(csv, dri, "~"); // 61 
-          //System.out.println("csv: "+csv);
           System.out.println(hr + "\nTesting method 12/12: update(sb). \nResult: err: "
             + nemo.update(csv));
 
@@ -267,14 +159,8 @@ public class TestInventoryItemImpl
 
           returned = nemo.formatDisplay(sb);  // 69
 
-          //System.out.println(hr + "\nTesting 1 method 2/12: formatDisplay(sb). \nsb: " + sb + hr);
-
-          //=======================================================================================================
-
-          //nemo.update(csv);                // 70
-          //System.out.println("\nobject after $csv was tokenized in update(): ");
-          //System.out.println(hr + "\nTesting method 12/12: update(sb). \nResult: err: " + nemo.update(csv)); 
-
+          
+          
           //=======================================================================================================
 
           sb.setLength(0); //   68
@@ -324,8 +210,7 @@ public class TestInventoryItemImpl
             e.printStackTrace(System.out);
           }
           //================creating a hashtable finish ===========================================================
-
-          
+     
           
           
           //=======================================================================================================
@@ -337,10 +222,6 @@ public class TestInventoryItemImpl
           System.out.println(hr + "\nTesting method 8/12: placeReplenishmentOrder(). "
             + "\nResult: Message: "
             + nemo.placeReplenishmentOrder() + "." + hr);
-
-
-
-
 
           //=======================================================================================================
           System.out.println(hr + "\nTesting method 9/12: placeSalesOrder(44). \nResult: Message: "
@@ -367,65 +248,6 @@ public class TestInventoryItemImpl
           nemo.formatReportData_1(sb);
           System.out.println(sb);
 
-
-          /*
-           // ============================  get output
-           sb.setLength(0);
-           returned = nemo.formatDisplay(sb);
-           System.out.println(hr + "\ntesting :"+sb);        
-           //==========================================
-           */
-
-          /*
-           System.out.println("---------- Test " + ctr +   " began ----------");
-           System.out.println("---------- Test " + ++ctr + " ended ----------");
-        
-           */
-
-          // ====================== get next set of data =================
-          //csv.setLength(0);
-          //returned = InventoryItemImpl.getData(csv, dri, "~");
-          //System.out.println("\n$returned: " + returned);
-
-
-
-
-
-          // ==================================================================
-          // System.out.println(hr + "Testing method 2/12:\nformatDisplay(sb). \nsb: "+ nemo.formatDisplay(sb) + "." + hr);
-
-          // ==================================================================
-          //System.out.println(hr + "\nTesting method 5/12: getData(sb, dri, \"~\"). \nsb: "+ nemo.getData(sb, dri, "~") + "." + hr);
-
-
-//        // ==================================================================
-//        System.out.println(hr+"Testing method 12/12:\nupdate(sb). \nsb: "+ nemo.update(sb) + "." + hr);
-//        // ====================================================================================
-
-          // ======== deflating $sb (start) ======================================================================= 
-        /*
-           try
-           {
-
-           FileOutputStream fos = new FileOutputStream("iii_" + ++ctr + ".ser"); // 1. create a file 
-
-           // :ObjectOutputStream 
-           // It is a high level stream.      
-           // It has method writeObject(Object x)
-           // It serializes an Object to a file and gives it extension .ser  
-           // and sends it to the output stream. 
-           // Similarly, the ObjectInputStream class contains the following method for deserializing an object:
-           ObjectOutputStream oos = new ObjectOutputStream(fos); // 2. create a serializer
-
-           oos.writeObject(sb);  // serialize the instance            3. serialize the object
-           oos.close();
-           fos.close();
-           }
-           catch (Exception e)
-           {
-           System.out.println("Esception caught in run() " + e.getMessage() + e.getCause());
-           }
-           */
           // ======= deflating $sb (finish) =======================================================================
 
           //returned = nemo.persistData(sb);
@@ -475,46 +297,14 @@ public class TestInventoryItemImpl
 
     //===== hashtable map (start) === 
     Enumeration htik;
+    Object htiko; // hash table inflated. key as Object
     StringBuffer _sb = new StringBuffer();
     StringBuffer fd = new StringBuffer(); //fd=formatData
     String htiks = "";
     InventoryItemImpl htiv;
-
-
     //===== hashtable map (finish) === 
 
-    //int ctr = 0;
-
-    //==========================================
-
-
-
-    /*
-     // === deflating the hashtable start ==============================================
-     try
-     {
-     FileOutputStream fos = new FileOutputStream("../data/Assign1.ser"); // 29
-     ObjectOutputStream oos = new ObjectOutputStream(fos); // 30 
-
-     oos.writeObject(ht);  // 31 
-     System.out.println("\n--- ht has been serialized/deflated.");
-     oos.close(); // 32
-     fos.close();
-
-     }
-     catch (Exception e)
-     {
-     System.out.println("Caught exception in wrap(): " + e.getMessage());
-     System.out.println("... stack trace follows ...");
-     e.printStackTrace(System.out);
-
-     }
-
-     // === deflating the hashtable finish ==============================================
-
-     */
-
-    // === deflating the hashtable start ==============================================
+    // === deflating/serializing the hashtable start ==============================================
     try
     {
       FileOutputStream fos = new FileOutputStream("../data/Assign1.ser"); // 29
@@ -524,22 +314,20 @@ public class TestInventoryItemImpl
       System.out.println("\n--- ht has been serialized/deflated.");
       oos.close(); // 32
       fos.close();
-
     }
     catch (Exception e)
     {
       System.out.println("Caught exception in wrap(): " + e.getMessage());
       System.out.println("... stack trace follows ...");
       e.printStackTrace(System.out);
-
     }
 
-    // ============================ deflating the hashtable finish ==============================================
+    // ====== deflating/serializing the hashtable finish ==============================================
 
 
     // =============================== inflate/deserialize the hashtable start ===================================
 
-    //Hashtable hti = null; // 33 - ht inflated
+    
     Hashtable[] hti = null; // 33 - ht inflated
 
     try
@@ -552,7 +340,8 @@ public class TestInventoryItemImpl
 
       ois.close();
       fis.close();
-
+      
+      //System.out.println("hti size is : "+hti.size());
     }
     catch (Exception e)
     {
@@ -561,95 +350,31 @@ public class TestInventoryItemImpl
       e.printStackTrace(System.out);
     }
     // =============================== inflate/deserialize the hashtable finish ===================================
-
-
-
     System.out.println("\n --- ht has been deserialized/inflated...");
-
-
-    /*
-     // === print out the contents of the inflated hashtable (start) =================================    
-
-     _sb.append("--- the deserialized/inflated hashtable's contents\n");
-    
-     for (int i = 0; i < 8; i++)
-     {
-     htik = hti[i].keys(); // 36 
-      
-     // 71 
-
-     while (htik.hasMoreElements()) // 37
-     {
-     htiks = (String) htik.nextElement(); // 38
-     _sb.append((String) htiks + "\t: " + hti[i].get(htiks)); // 39    
-
-     _sb.append("\n");
-     }
-     }
-
-
-     printNumLoose();
-     printNumClose();
-     System.out.println("");
-
-     System.out.println(_sb);
-
-    
-
-     System.out.println("");
-     printNumClose();
-     printNumLoose();
-    
-     // === print out the contents of the inflated hashtable (finish) =================================
-     */
-
-
     // === print out the contents of the inflated hashtable (start) =================================    
 
     _sb.append("--- the deserialized/inflated hashtable's contents\n");
-
-    for (int i = 0; i < 8; i++)
+        
+    //System.out.println("hti.length: "+hti.length);
+    
+    //for (int i = 0; !hti[i].isEmpty(); i++)
+    int i =0;
+    for (Enumeration e = ht[i].keys(); e.hasMoreElements();)
     {
       htik = hti[i].keys(); // 36 
 
-      // 71 
-
       while (htik.hasMoreElements()) // 37
-      {
-    
-        // ======== option 1 start ============================================================        
-        htiks = (String) htik.nextElement(); // 38        
-        _sb.append((String) htiks + "\t: " + hti[i].get(htiks)); // output BAD: returns address of item object        
-        // ======== option 1 finish ============================================================
-    
-        
-       /*
-        //========= option 2 start ======================================================================       
-        htiks = (String) htik.nextElement(); // 38   
-        InventoryItemImpl nemo = new InventoryItemImpl(hti[i].get(htiks)); //ERROR: constructor can't be applied to given types        
-        nemo.formatReportData(fd); // ERROR: can't find the symbol
-        _sb.append(fd);
-        //========= option 2 finish ======================================================================
-        */
-        
-        /*
-        //========= option 3 start ======================================================================
-        htiks = (String) htik.nextElement(); // 38           
-        InventoryItemImpl nemo = hti[i].get(htiks); // ERROR: incompatible types       
-        nemo.formatReportData(fd);
-        _sb.append(fd);
-        //========= option 3 finish ======================================================================
-        */
-
-        /*
-        //========= option 4 start ======================================================================
-        InventoryItemImpl nemo = hti[i].get(htik); // ERROR: incompatible types
-        nemo.formatReportData(fd);
-        _sb.append(fd);
-        //========= option 4 finish ======================================================================
-        */
-
-
+      {    
+       // ======== option 1a start ============================================================  
+        //_sb.setLength(0);
+        htiko = htik.nextElement(); //         
+        //_sb.append("key: " + htiko + "\n" ); 
+        _nemo = (InventoryItemImpl) hti[i].get(htiko);
+        _sb.append(_nemo.formatReportData_1(_sb));
+        //System.out.println(_sb);
+        // ======== option 1a finish ============================================================
+     
+       
         _sb.append("\n");
       }
     }
@@ -664,6 +389,7 @@ public class TestInventoryItemImpl
     System.out.println("");
     printNumClose();
     printNumLoose();
+    System.out.println("============================================================");
 
     // === print out the contents of the inflated hashtable (finish) =================================
 
