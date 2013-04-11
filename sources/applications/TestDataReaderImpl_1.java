@@ -152,7 +152,7 @@ public class TestDataReaderImpl_1
   public static void main(String[] args)
     throws IOException
   {
-    TestDataReader theApp = new TestDataReader();
+    TestDataReaderImpl_1 theApp = new TestDataReaderImpl_1();
 
     theApp.init();   // then call its methods
     theApp.run();

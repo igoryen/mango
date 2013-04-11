@@ -1,0 +1,522 @@
+
+========================= Test 1 started =========================
+
+Testing method 5/12: getData(csv,dri,"~"). 
+Result: csv (non-tokenized): ~12345~Thingies~Box of 100~169~50.00~150~100~1200~145~
+
+Testing method 12/12: update(sb). 
+Result: err: 0
+
+Testing 2 method 2/12: formatDisplay(sb). 
+Result: sb: 
+--------------------- formatDisplay() start ---------------------
+Inv Id   Description    Package          Ro-Pt Ro-Qty U-Price
+                        Last-Upd        RepOrd In Stk  SalOrd
+-----------------------------------------------------------------
+12345    Thingies       Box of 100         150    100   50.00
+                        2013-03-30        1200    169  145
+--------------------- formatDisplay() finish ---------------------
+
+Testing method 4/12: formatReportHeadings_1(sb). 
+Result: sb: 
+--------------------------------------------------------------
+Inv Id   Description    Package          Ro-Pt Ro-Qty U-Price
+                        Last-Upd        RepOrd In Stk  SalOrd
+--------------------------------------------------------------
+
+Testing method 3/12: formatReportData_1(sb). 
+Result: sb: 
+12345    Thingies       Box of 100         150    100   50.00
+                        2013-03-30        1200    169  145
+
+Testing method 6/12: getPrimaryKey(). 
+Result: PK: 12345.
+
+Testing method 7/12: increaseStock(55). 
+Result: Message: Increased stock of 12345 by 55..
+
+Testing method 9/12: placeSalesOrder(44). 
+Result: Message: Sales Order of 44 for 12345..
+
+Testing method 10/12: receiveReplenishment(33). 
+Result: Message: Replenishment received of 33 for 12345. Increased stock of 12345 by 33...
+
+Testing method 11/12: shipSalesOrder(22). 
+Result: Message: Goods 22 items shipped for 12345. Decreased stock of 12345 by 22...
+
+Testing method 1/12: decreaseStock(11). 
+Result: Message: Decreased stock of 12345 by 11..
+
+After testing the methods, the data for <12345> are as follows:
+
+--------------------------------------------------------------
+Inv Id   Description    Package          Ro-Pt Ro-Qty U-Price
+                        Last-Upd        RepOrd In Stk  SalOrd
+--------------------------------------------------------------
+
+12345    Thingies       Box of 100         150    100   50.00
+                        2013-03-30        1167    224  167
+
+========================= Test 1 finished =========================
+
+========================= Test 2 started =========================
+
+Testing method 5/12: getData(csv,dri,"~"). 
+Result: csv (non-tokenized): ~23456~Wajmacallits ~Carton of 1000~6~450.00~75~25~20~3~
+
+Testing method 12/12: update(sb). 
+Result: err: 0
+
+Testing 2 method 2/12: formatDisplay(sb). 
+Result: sb: 
+--------------------- formatDisplay() start ---------------------
+Inv Id   Description    Package          Ro-Pt Ro-Qty U-Price
+                        Last-Upd        RepOrd In Stk  SalOrd
+-----------------------------------------------------------------
+23456    Wajmacallits   Carton of 1000      75     25  450.00
+                        2013-03-30          20      6    3
+--------------------- formatDisplay() finish ---------------------
+
+Testing method 4/12: formatReportHeadings_1(sb). 
+Result: sb: 
+--------------------------------------------------------------
+Inv Id   Description    Package          Ro-Pt Ro-Qty U-Price
+                        Last-Upd        RepOrd In Stk  SalOrd
+--------------------------------------------------------------
+
+Testing method 3/12: formatReportData_1(sb). 
+Result: sb: 
+23456    Wajmacallits   Carton of 1000      75     25  450.00
+                        2013-03-30          20      6    3
+
+Testing method 6/12: getPrimaryKey(). 
+Result: PK: 23456.
+
+Testing method 7/12: increaseStock(55). 
+Result: Message: Increased stock of 23456 by 55..
+
+Testing method 9/12: placeSalesOrder(44). 
+Result: Message: Sales Order of 44 for 23456..
+
+Testing method 10/12: receiveReplenishment(33). 
+Result: Message: Replenishment received of 33 for 23456. Increased stock of 23456 by 33...
+Uh-oh, you are below the reorder point. I will do replenishment.
+
+Testing method 11/12: shipSalesOrder(22). 
+Result: Message: Goods 22 items shipped for 23456. Decreased stock of 23456 by 22.
+Replenishment 25 ordered for 23456....
+Uh-oh, you are below the reorder point. I will do replenishment.
+
+Testing method 1/12: decreaseStock(11). 
+Result: Message: Decreased stock of 23456 by 11.
+Replenishment 25 ordered for 23456...
+
+After testing the methods, the data for <23456> are as follows:
+
+--------------------------------------------------------------
+Inv Id   Description    Package          Ro-Pt Ro-Qty U-Price
+                        Last-Upd        RepOrd In Stk  SalOrd
+--------------------------------------------------------------
+
+23456    Wajmacallits   Carton of 1000      75     25  450.00
+                        2013-03-30          37     61   25
+
+========================= Test 2 finished =========================
+
+========================= Test 3 started =========================
+
+Testing method 5/12: getData(csv,dri,"~"). 
+Result: csv (non-tokenized): ~34567~Widgets~Packet of 500~9~9.99~9~25~15~10~
+
+Testing method 12/12: update(sb). 
+Result: err: 0
+
+Testing 2 method 2/12: formatDisplay(sb). 
+Result: sb: 
+--------------------- formatDisplay() start ---------------------
+Inv Id   Description    Package          Ro-Pt Ro-Qty U-Price
+                        Last-Upd        RepOrd In Stk  SalOrd
+-----------------------------------------------------------------
+34567    Widgets        Packet of 500        9     25    9.99
+                        2013-03-30          15      9   10
+--------------------- formatDisplay() finish ---------------------
+
+Testing method 4/12: formatReportHeadings_1(sb). 
+Result: sb: 
+--------------------------------------------------------------
+Inv Id   Description    Package          Ro-Pt Ro-Qty U-Price
+                        Last-Upd        RepOrd In Stk  SalOrd
+--------------------------------------------------------------
+
+Testing method 3/12: formatReportData_1(sb). 
+Result: sb: 
+34567    Widgets        Packet of 500        9     25    9.99
+                        2013-03-30          15      9   10
+
+Testing method 6/12: getPrimaryKey(). 
+Result: PK: 34567.
+
+Testing method 7/12: increaseStock(55). 
+Result: Message: Increased stock of 34567 by 55..
+
+Testing method 9/12: placeSalesOrder(44). 
+Result: Message: Sales Order of 44 for 34567..
+
+Testing method 10/12: receiveReplenishment(33). 
+Result: Message: Replenishment received of 33 for 34567. Increased stock of 34567 by 33...
+
+Testing method 11/12: shipSalesOrder(22). 
+Result: Message: Goods 22 items shipped for 34567. Decreased stock of 34567 by 22...
+
+Testing method 1/12: decreaseStock(11). 
+Result: Message: Decreased stock of 34567 by 11..
+
+After testing the methods, the data for <34567> are as follows:
+
+--------------------------------------------------------------
+Inv Id   Description    Package          Ro-Pt Ro-Qty U-Price
+                        Last-Upd        RepOrd In Stk  SalOrd
+--------------------------------------------------------------
+
+34567    Widgets        Packet of 500        9     25    9.99
+                        2013-03-30         -18     64   32
+
+========================= Test 3 finished =========================
+
+========================= Test 4 started =========================
+
+Testing method 5/12: getData(csv,dri,"~"). 
+Result: csv (non-tokenized): ~45678~Oil~Drum of 40 l~70~100.00~30~60~80~20~
+
+Testing method 12/12: update(sb). 
+Result: err: 0
+
+Testing 2 method 2/12: formatDisplay(sb). 
+Result: sb: 
+--------------------- formatDisplay() start ---------------------
+Inv Id   Description    Package          Ro-Pt Ro-Qty U-Price
+                        Last-Upd        RepOrd In Stk  SalOrd
+-----------------------------------------------------------------
+45678    Oil            Drum of 40 l        30     60  100.00
+                        2013-03-30          80     70   20
+--------------------- formatDisplay() finish ---------------------
+
+Testing method 4/12: formatReportHeadings_1(sb). 
+Result: sb: 
+--------------------------------------------------------------
+Inv Id   Description    Package          Ro-Pt Ro-Qty U-Price
+                        Last-Upd        RepOrd In Stk  SalOrd
+--------------------------------------------------------------
+
+Testing method 3/12: formatReportData_1(sb). 
+Result: sb: 
+45678    Oil            Drum of 40 l        30     60  100.00
+                        2013-03-30          80     70   20
+
+Testing method 6/12: getPrimaryKey(). 
+Result: PK: 45678.
+
+Testing method 7/12: increaseStock(55). 
+Result: Message: Increased stock of 45678 by 55..
+
+Testing method 9/12: placeSalesOrder(44). 
+Result: Message: Sales Order of 44 for 45678..
+
+Testing method 10/12: receiveReplenishment(33). 
+Result: Message: Replenishment received of 33 for 45678. Increased stock of 45678 by 33...
+
+Testing method 11/12: shipSalesOrder(22). 
+Result: Message: Goods 22 items shipped for 45678. Decreased stock of 45678 by 22...
+
+Testing method 1/12: decreaseStock(11). 
+Result: Message: Decreased stock of 45678 by 11..
+
+After testing the methods, the data for <45678> are as follows:
+
+--------------------------------------------------------------
+Inv Id   Description    Package          Ro-Pt Ro-Qty U-Price
+                        Last-Upd        RepOrd In Stk  SalOrd
+--------------------------------------------------------------
+
+45678    Oil            Drum of 40 l        30     60  100.00
+                        2013-03-30          47    125   42
+
+========================= Test 4 finished =========================
+
+========================= Test 5 started =========================
+
+Testing method 5/12: getData(csv,dri,"~"). 
+Result: csv (non-tokenized): ~56789~Coffee~Can of 300 ml~50~10.00~40~20~50~40~
+
+Testing method 12/12: update(sb). 
+Result: err: 0
+
+Testing 2 method 2/12: formatDisplay(sb). 
+Result: sb: 
+--------------------- formatDisplay() start ---------------------
+Inv Id   Description    Package          Ro-Pt Ro-Qty U-Price
+                        Last-Upd        RepOrd In Stk  SalOrd
+-----------------------------------------------------------------
+56789    Coffee         Can of 300 ml       40     20   10.00
+                        2013-03-30          50     50   40
+--------------------- formatDisplay() finish ---------------------
+
+Testing method 4/12: formatReportHeadings_1(sb). 
+Result: sb: 
+--------------------------------------------------------------
+Inv Id   Description    Package          Ro-Pt Ro-Qty U-Price
+                        Last-Upd        RepOrd In Stk  SalOrd
+--------------------------------------------------------------
+
+Testing method 3/12: formatReportData_1(sb). 
+Result: sb: 
+56789    Coffee         Can of 300 ml       40     20   10.00
+                        2013-03-30          50     50   40
+
+Testing method 6/12: getPrimaryKey(). 
+Result: PK: 56789.
+
+Testing method 7/12: increaseStock(55). 
+Result: Message: Increased stock of 56789 by 55..
+
+Testing method 9/12: placeSalesOrder(44). 
+Result: Message: Sales Order of 44 for 56789..
+
+Testing method 10/12: receiveReplenishment(33). 
+Result: Message: Replenishment received of 33 for 56789. Increased stock of 56789 by 33...
+
+Testing method 11/12: shipSalesOrder(22). 
+Result: Message: Goods 22 items shipped for 56789. Decreased stock of 56789 by 22...
+
+Testing method 1/12: decreaseStock(11). 
+Result: Message: Decreased stock of 56789 by 11..
+
+After testing the methods, the data for <56789> are as follows:
+
+--------------------------------------------------------------
+Inv Id   Description    Package          Ro-Pt Ro-Qty U-Price
+                        Last-Upd        RepOrd In Stk  SalOrd
+--------------------------------------------------------------
+
+56789    Coffee         Can of 300 ml       40     20   10.00
+                        2013-03-30          17    105   62
+
+========================= Test 5 finished =========================
+
+========================= Test 6 started =========================
+
+Testing method 5/12: getData(csv,dri,"~"). 
+Result: csv (non-tokenized): ~67890~Steel~Bar of 10 kg~66~66.00~50~30~60~6~
+
+Testing method 12/12: update(sb). 
+Result: err: 0
+
+Testing 2 method 2/12: formatDisplay(sb). 
+Result: sb: 
+--------------------- formatDisplay() start ---------------------
+Inv Id   Description    Package          Ro-Pt Ro-Qty U-Price
+                        Last-Upd        RepOrd In Stk  SalOrd
+-----------------------------------------------------------------
+67890    Steel          Bar of 10 kg        50     30   66.00
+                        2013-03-30          60     66    6
+--------------------- formatDisplay() finish ---------------------
+
+Testing method 4/12: formatReportHeadings_1(sb). 
+Result: sb: 
+--------------------------------------------------------------
+Inv Id   Description    Package          Ro-Pt Ro-Qty U-Price
+                        Last-Upd        RepOrd In Stk  SalOrd
+--------------------------------------------------------------
+
+Testing method 3/12: formatReportData_1(sb). 
+Result: sb: 
+67890    Steel          Bar of 10 kg        50     30   66.00
+                        2013-03-30          60     66    6
+
+Testing method 6/12: getPrimaryKey(). 
+Result: PK: 67890.
+
+Testing method 7/12: increaseStock(55). 
+Result: Message: Increased stock of 67890 by 55..
+
+Testing method 9/12: placeSalesOrder(44). 
+Result: Message: Sales Order of 44 for 67890..
+
+Testing method 10/12: receiveReplenishment(33). 
+Result: Message: Replenishment received of 33 for 67890. Increased stock of 67890 by 33...
+
+Testing method 11/12: shipSalesOrder(22). 
+Result: Message: Goods 22 items shipped for 67890. Decreased stock of 67890 by 22...
+
+Testing method 1/12: decreaseStock(11). 
+Result: Message: Decreased stock of 67890 by 11..
+
+After testing the methods, the data for <67890> are as follows:
+
+--------------------------------------------------------------
+Inv Id   Description    Package          Ro-Pt Ro-Qty U-Price
+                        Last-Upd        RepOrd In Stk  SalOrd
+--------------------------------------------------------------
+
+67890    Steel          Bar of 10 kg        50     30   66.00
+                        2013-03-30          27    121   28
+
+========================= Test 6 finished =========================
+
+========================= Test 7 started =========================
+
+Testing method 5/12: getData(csv,dri,"~"). 
+Result: csv (non-tokenized): ~78901~Gold~Bar of 300 mg~70~999.00~37~57~70~7~
+
+Testing method 12/12: update(sb). 
+Result: err: 0
+
+Testing 2 method 2/12: formatDisplay(sb). 
+Result: sb: 
+--------------------- formatDisplay() start ---------------------
+Inv Id   Description    Package          Ro-Pt Ro-Qty U-Price
+                        Last-Upd        RepOrd In Stk  SalOrd
+-----------------------------------------------------------------
+78901    Gold           Bar of 300 mg       37     57  999.00
+                        2013-03-30          70     70    7
+--------------------- formatDisplay() finish ---------------------
+
+Testing method 4/12: formatReportHeadings_1(sb). 
+Result: sb: 
+--------------------------------------------------------------
+Inv Id   Description    Package          Ro-Pt Ro-Qty U-Price
+                        Last-Upd        RepOrd In Stk  SalOrd
+--------------------------------------------------------------
+
+Testing method 3/12: formatReportData_1(sb). 
+Result: sb: 
+78901    Gold           Bar of 300 mg       37     57  999.00
+                        2013-03-30          70     70    7
+
+Testing method 6/12: getPrimaryKey(). 
+Result: PK: 78901.
+
+Testing method 7/12: increaseStock(55). 
+Result: Message: Increased stock of 78901 by 55..
+
+Testing method 9/12: placeSalesOrder(44). 
+Result: Message: Sales Order of 44 for 78901..
+
+Testing method 10/12: receiveReplenishment(33). 
+Result: Message: Replenishment received of 33 for 78901. Increased stock of 78901 by 33...
+
+Testing method 11/12: shipSalesOrder(22). 
+Result: Message: Goods 22 items shipped for 78901. Decreased stock of 78901 by 22...
+
+Testing method 1/12: decreaseStock(11). 
+Result: Message: Decreased stock of 78901 by 11..
+
+After testing the methods, the data for <78901> are as follows:
+
+--------------------------------------------------------------
+Inv Id   Description    Package          Ro-Pt Ro-Qty U-Price
+                        Last-Upd        RepOrd In Stk  SalOrd
+--------------------------------------------------------------
+
+78901    Gold           Bar of 300 mg       37     57  999.00
+                        2013-03-30          37    125   29
+
+========================= Test 7 finished =========================
+
+========================= Test 8 started =========================
+
+Testing method 5/12: getData(csv,dri,"~"). 
+Result: csv (non-tokenized): ~89012~Wheat~Bag of 20 kg~90~30.00~80~50~120~12~
+
+Testing method 12/12: update(sb). 
+Result: err: 0
+
+Testing 2 method 2/12: formatDisplay(sb). 
+Result: sb: 
+--------------------- formatDisplay() start ---------------------
+Inv Id   Description    Package          Ro-Pt Ro-Qty U-Price
+                        Last-Upd        RepOrd In Stk  SalOrd
+-----------------------------------------------------------------
+89012    Wheat          Bag of 20 kg        80     50   30.00
+                        2013-03-30         120     90   12
+--------------------- formatDisplay() finish ---------------------
+
+Testing method 4/12: formatReportHeadings_1(sb). 
+Result: sb: 
+--------------------------------------------------------------
+Inv Id   Description    Package          Ro-Pt Ro-Qty U-Price
+                        Last-Upd        RepOrd In Stk  SalOrd
+--------------------------------------------------------------
+
+Testing method 3/12: formatReportData_1(sb). 
+Result: sb: 
+89012    Wheat          Bag of 20 kg        80     50   30.00
+                        2013-03-30         120     90   12
+
+Testing method 6/12: getPrimaryKey(). 
+Result: PK: 89012.
+
+Testing method 7/12: increaseStock(55). 
+Result: Message: Increased stock of 89012 by 55..
+
+Testing method 9/12: placeSalesOrder(44). 
+Result: Message: Sales Order of 44 for 89012..
+
+Testing method 10/12: receiveReplenishment(33). 
+Result: Message: Replenishment received of 33 for 89012. Increased stock of 89012 by 33...
+
+Testing method 11/12: shipSalesOrder(22). 
+Result: Message: Goods 22 items shipped for 89012. Decreased stock of 89012 by 22...
+
+Testing method 1/12: decreaseStock(11). 
+Result: Message: Decreased stock of 89012 by 11..
+
+After testing the methods, the data for <89012> are as follows:
+
+--------------------------------------------------------------
+Inv Id   Description    Package          Ro-Pt Ro-Qty U-Price
+                        Last-Upd        RepOrd In Stk  SalOrd
+--------------------------------------------------------------
+
+89012    Wheat          Bag of 20 kg        80     50   30.00
+                        2013-03-30          87    145   34
+
+========================= Test 8 finished =========================
+
+========================= Test 9 started =========================
+
+         1         2         3         4         5         6
+12345678901234567890123456789012345678901234567890123456789012345
+
+--------------------------------------------------------------
+Inv Id   Description    Package          Ro-Pt Ro-Qty U-Price
+                        Last-Upd        RepOrd In Stk  SalOrd
+--------------------------------------------------------------
+
+89012    Wheat          Bag of 20 kg        80     50   30.00
+                        2013-03-30          87    145   34
+
+23456    Wajmacallits   Carton of 1000      75     25  450.00
+                        2013-03-30          37     61   25
+
+78901    Gold           Bar of 300 mg       37     57  999.00
+                        2013-03-30          37    125   29
+
+34567    Widgets        Packet of 500        9     25    9.99
+                        2013-03-30         -18     64   32
+
+45678    Oil            Drum of 40 l        30     60  100.00
+                        2013-03-30          47    125   42
+
+56789    Coffee         Can of 300 ml       40     20   10.00
+                        2013-03-30          17    105   62
+
+67890    Steel          Bar of 10 kg        50     30   66.00
+                        2013-03-30          27    121   28
+
+12345    Thingies       Box of 100         150    100   50.00
+                        2013-03-30        1167    224  167
+
+12345678901234567890123456789012345678901234567890123456789012345
+         1         2         3         4         5         6
+=================================================================

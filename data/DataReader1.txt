@@ -1,0 +1,8 @@
+1
+1. Asterisk (*) is multiplication.
+2. Double slash (//) is HTML comments.
+3. Pound (#) is cmd comments.
+4. Tab (	) is for spaces.
+
+6. Space ( ) is for separating words.
+7. "At" (@) is for email.

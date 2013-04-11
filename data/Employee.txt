@@ -1,0 +1,96 @@
+# Employee.txt - Test data/script for class Employee
+#
+# ***NOTE*** For a "missing data field" 
+# enter either an empty line or a single <TAB>
+#
+#
+#
+#
+# employeeId
+# jobTitle
+# salary
+# payType
+#
+# object 1
+#
+###################Action1# update a new object
+#
+#
+1         # employeeId
+Cleaner   # jobTitle
+15.00     # salary
+HW        # payType
+#
+# object 2
+#
+###################Action1# update a new object
+#
+#
+2         # employeeId
+Procurement Manager   # jobTitle
+60000.00  # salary
+S4        # payType
+#
+# object 3
+#
+###################Action1# update a new object
+#
+#
+3         # employeeId
+Disposal Operative   # jobTitle
+18.00     # salary
+HW        # payType
+#
+# object 4
+#
+###################Action1# update a new object
+#
+#
+4         # employeeId
+Cook      # jobTitle
+40000.00  # salary
+S4        # payType
+#
+# object 5
+#
+###################Action1# update a new object
+#
+#
+5         # employeeId
+Java Developer   # jobTitle
+45000.00   # salary
+S4        # payType
+#
+# object 6
+#
+###################Action1# update a new object
+#
+#
+6         # employeeId
+Driver    # jobTitle
+20.00     # salary
+HW        # payType
+#
+# object 7
+#
+###################Action1# update a new object
+#
+#
+7           # employeeId
+Accountant  # jobTitle
+45000.00    # salary
+S4          # payType
+#
+# object 8
+#
+###################Action1# update a new object
+#
+#
+8         # employeeId
+Security Officer   # jobTitle
+20.00     # salary
+HW        # payType
+#
+#
+###################Action0# exit
+

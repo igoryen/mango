@@ -6,6 +6,17 @@ import java.io.*;
 import java.util.*;
 import java.text.SimpleDateFormat;
 
+@SuppressWarnings("unchecked")
+/**
+ * This is a test application class. It is used to: <ul> <li>instantiate class
+ * InventoryItemImpl</li> <li>test its methods </li> <li>save its instances in a hashtable</li>
+ * <li>Serialize and deserialize the hashtable</li> <li>produce a report using the data from the
+ * instances of class InventoryItemImpl</li>
+ *
+ * </ul>
+ *
+ * @author Igor Entaltsev
+ */
 public class TestInventoryItemImpl
 {
   //===================static data ===============================================================
@@ -16,23 +27,13 @@ public class TestInventoryItemImpl
    * In which to store args from command line
    */
   public DataReaderImpl_1 dri;
-  //Hashtable<String, String>[] ht = (Hashtable<String, String>[]) new Hashtable<?, ?>[10]; // 78
-  //Hashtable<String, String>[] ht = (Hashtable<String, String>[]) new Hashtable[10]; // 78
-  //Hashtable<String, String>[] ht = new Hashtable[10]; // 78
-  private Hashtable[] ht; // 78
-  //private Hashtable [] ht; //
-  //private Hashtable [] hti;
-  
-  private InventoryItemImpl _nemo;
-  
+  private Hashtable ht = new Hashtable(); // ht = hashtable. used for serialization
+  private Hashtable hti = new Hashtable(); // hti= hashtable inflated. Used for deserialization.
+  private InventoryItemImpl _nemo; //to be used at deserialization  
 
-  //private Hashtable[] ht = new Hashtable[10]; // 78
-  //private Hashtable[] ht; // 78
-  //private Hashtable<String, String>[] ht =  new Hashtable[10]; // 78
-  //ht[0] = new Hashtable<String, String>();
-  //==================constructors
+  //==================constructors ====================================
   // none defined ( :. default constructor provided by compiler )
-  //-------------------init()
+  //=================METHOD init() =====================================
   /**
    * Performs one-time initialization at start of application typically the following...
    * <p>processes the command-line arguments.</p> <p>opens input and/output files or database(s)</p>
@@ -48,6 +49,9 @@ public class TestInventoryItemImpl
   } // end of init()
 
   // ========== method printNumClose() start ==================================================================
+  /**
+   * The method is used to print a row of numbers without spaces.
+   */
   private void printNumClose() // prints 1234567890123....
   {
     //System.out.print("12345679");
@@ -64,6 +68,9 @@ public class TestInventoryItemImpl
   // ========== method printNumClose() finish ==============================================================
   // ========== method printNumLoose() start  ==============================================================
 
+  /**
+   * The method is used to print a row of numbers with spaces.
+   */
   private void printNumLoose()  // prints      1      2      3...
   {
     for (int i = 1; i < 7; i++)
@@ -76,23 +83,15 @@ public class TestInventoryItemImpl
     }
     System.out.print("\n");
   }
-//     private void hasht(String sb)
-//     {
-//     Hashtable ht = new Hashtable();
-//     // == 1) create a hash map
-//     Enumeration htk;
-//     String htv;
-//     // == 2) create the hashtable
-
   // ========== method printNumLoose() finish ==============================================================
   // ========================== METHOD run() ==============================================================
+
   /**
-   * Controls the major part of the application (typically in a loop which reads input file(s). But,
-   * in this example, the task is trivial.
+   * This method tests the methods of every instance of class InventoryItemImpl, and creates a
+   * hashtable of the instances.
    */
   private void run()
   {
-
     //===========================================================================================================
     int counter = 0;
     int ctr = 0;
@@ -103,13 +102,12 @@ public class TestInventoryItemImpl
     String hr = "";
 
     // =================== 1) create a hash map =============================================
-    // Hashtable <String, String> ht = new Hashtable<String, String>(); // = hash table
-    //Hashtable <String, String> ht = new Hashtable<String, String>(); // ht = hash table
+
     Enumeration htk;
     Enumeration htik; // htik = hashtable (inflated) keys
-    
+
     String htiks; // htiks = hashtable (inflated) keys as strings
-    //BigDecimal bd;
+
     int htai = 0; // hash-table's array's index
     // for tokenizing 
     String sep;
@@ -117,16 +115,15 @@ public class TestInventoryItemImpl
     StringTokenizer st;
 
 
+    String line = new String();
+    for (int x = 0; x < 25; x++)
+    {
+      line += "=";
+    }
+
     try // try 2 start
     {
-
-      // ht[0] = new Hashtable<String, String>();
-      //==================================================================================================
-      //+ "\n________________________________________________________________";
-      //============================================================================================================
-
-      System.out.println("\n========================================== Test "
-        + ++counter + " started ==========================================");
+      System.out.println("\n" + line + " Test " + ++counter + " started " + line);
 
       //===========================================================================================================
 
@@ -142,25 +139,18 @@ public class TestInventoryItemImpl
       {
         while (returned == 0) // 66
         {
-
           System.out.println(hr
             + "\nTesting method 5/12: getData(csv,dri,\"~\"). \nResult: csv (non-tokenized): " + csv
             + hr);
-
           nemo = new InventoryItemImpl();     // 67        
-          System.out.println("\nAn object created.");
+          //System.out.println("\nAn object created.");
 
           System.out.println(hr + "\nTesting method 12/12: update(sb). \nResult: err: "
             + nemo.update(csv));
 
           //=======================================================================================================
-
           //sb.setLength(0);                 // 68
-
           returned = nemo.formatDisplay(sb);  // 69
-
-          
-          
           //=======================================================================================================
 
           sb.setLength(0); //   68
@@ -183,25 +173,12 @@ public class TestInventoryItemImpl
           //=======================================================================================================
           System.out.println(hr + "\nTesting method 6/12: getPrimaryKey(). \nResult: PK: "
             + nemo.getPrimaryKey() + "." + hr);
-          
-          
-          
-          
           //=============== creating a hashtable start ============================================================
           try
           {
             //========= fill a hashtable start ======================================================================
-            ht[htai] = new Hashtable(); // 78
-            System.out.println(" hash-table n has been created");
-            String ok = nemo.getPrimaryKey(); // ok = object key
-
-            ht[htai].put(ok, nemo);
-
-            System.out.println(" hash-table n has been filled");
-
+            ht.put(nemo.getPrimaryKey(), nemo);
             //========= fill a hashtable finish ====================================================================
-
-
           }
           catch (Exception e)
           {
@@ -210,19 +187,14 @@ public class TestInventoryItemImpl
             e.printStackTrace(System.out);
           }
           //================creating a hashtable finish ===========================================================
-     
-          
-          
+
           //=======================================================================================================
           System.out.println(hr + "\nTesting method 7/12: increaseStock(55). \nResult: Message: "
             + nemo.increaseStock(55) + "." + hr);
-
-
           //=======================================================================================================
-          System.out.println(hr + "\nTesting method 8/12: placeReplenishmentOrder(). "
-            + "\nResult: Message: "
-            + nemo.placeReplenishmentOrder() + "." + hr);
-
+          //System.out.println(hr + "\nTesting method 8/12: placeReplenishmentOrder(). "
+          //  + "\nResult: Message: "
+          //  + nemo.placeReplenishmentOrder() + "." + hr);
           //=======================================================================================================
           System.out.println(hr + "\nTesting method 9/12: placeSalesOrder(44). \nResult: Message: "
             + nemo.placeSalesOrder(44) + "." + hr);
@@ -237,8 +209,8 @@ public class TestInventoryItemImpl
           System.out.println(hr + "\nTesting method 1/12: decreaseStock(11). \nResult: Message: "
             + nemo.decreaseStock(11) + "." + hr);
           //=======================================================================================================
-
-          System.out.println("\nAfter modifying values, the data are as follows:");
+          System.out.println("\nAfter testing the methods, the data for <" + nemo.getPrimaryKey()
+            + "> are as follows:");
           //=======================================================================================================
           sb.setLength(0);
           nemo.formatReportHeadings_1(sb);
@@ -250,12 +222,8 @@ public class TestInventoryItemImpl
 
           // ======= deflating $sb (finish) =======================================================================
 
-          //returned = nemo.persistData(sb);
-
-          System.out.println("\n========================================== Test "
-            + counter + " finished ==========================================");
-          System.out.println("\n========================================== Test "
-            + ++counter + " started ==========================================");
+          System.out.println("\n" + line + " Test " + counter + " finished " + line);
+          System.out.println("\n" + line + " Test " + ++counter + " started " + line);
           //======================================================================================================
 
           csv.setLength(0); // 77        
@@ -270,9 +238,6 @@ public class TestInventoryItemImpl
     {
       System.out.println("Caught exception in wrap(): " + e.getMessage());
     }
-
-
-
   }  // end of run()
 
   //===================== METHOD usage() =============================================================
@@ -287,22 +252,21 @@ public class TestInventoryItemImpl
 
   //===================== METHOD wrap() ======================================================================
   /**
-   * Performs one-time cleanup just before the application ends. <p>closes input and/output files or
-   * database(s)</p> <p>closes network connections</p>
+   * This method serializes and deserializes the hashtable created in run() and outputs the contents
+   * of the hashtable.
+   *  
    */
   private int wrap()
   {
-
     int retval = 0;
-
-    //===== hashtable map (start) === 
+    //================= hashtable map (start) ===================================================
     Enumeration htik;
     Object htiko; // hash table inflated. key as Object
     StringBuffer _sb = new StringBuffer();
     StringBuffer fd = new StringBuffer(); //fd=formatData
     String htiks = "";
     InventoryItemImpl htiv;
-    //===== hashtable map (finish) === 
+    //================= hashtable map (finish) ==================================================
 
     // === deflating/serializing the hashtable start ==============================================
     try
@@ -311,7 +275,7 @@ public class TestInventoryItemImpl
       ObjectOutputStream oos = new ObjectOutputStream(fos); // 30 
 
       oos.writeObject(ht);  // 31 
-      System.out.println("\n--- ht has been serialized/deflated.");
+      //System.out.println("\n--- ht has been serialized/deflated.");
       oos.close(); // 32
       fos.close();
     }
@@ -322,26 +286,22 @@ public class TestInventoryItemImpl
       e.printStackTrace(System.out);
     }
 
-    // ====== deflating/serializing the hashtable finish ==============================================
+    // =============== deflating/serializing the hashtable finish ==============================================
 
+    // ================ inflate/deserialize the hashtable start ===================================
 
-    // =============================== inflate/deserialize the hashtable start ===================================
-
-    
-    Hashtable[] hti = null; // 33 - ht inflated
-
+    //Hashtable[] hti = null; // 33 - ht inflated
     try
     {
-      //FileInputStream fis = new FileInputStream("Assign1.ser"); // 34
       FileInputStream fis = new FileInputStream("../data/Assign1.ser"); // 
       ObjectInputStream ois = new ObjectInputStream(fis);
 
-      hti = (Hashtable[]) ois.readObject(); // 35
+      hti = (Hashtable) ois.readObject(); // 35
 
       ois.close();
       fis.close();
-      
-      //System.out.println("hti size is : "+hti.size());
+
+      //System.out.println("hti size is : " + hti.size());
     }
     catch (Exception e)
     {
@@ -350,49 +310,44 @@ public class TestInventoryItemImpl
       e.printStackTrace(System.out);
     }
     // =============================== inflate/deserialize the hashtable finish ===================================
-    System.out.println("\n --- ht has been deserialized/inflated...");
-    // === print out the contents of the inflated hashtable (start) =================================    
+    //System.out.println("\n --- ht has been deserialized/inflated...");
+    // ==================== print out the contents of the inflated hashtable (start) =============================    
 
-    _sb.append("--- the deserialized/inflated hashtable's contents\n");
-        
+    //_sb.append("--- the deserialized/inflated hashtable's contents\n");
+
     //System.out.println("hti.length: "+hti.length);
-    
-    //for (int i = 0; !hti[i].isEmpty(); i++)
-    int i =0;
-    for (Enumeration e = ht[i].keys(); e.hasMoreElements();)
-    {
-      htik = hti[i].keys(); // 36 
-
-      while (htik.hasMoreElements()) // 37
-      {    
-       // ======== option 1a start ============================================================  
-        //_sb.setLength(0);
-        htiko = htik.nextElement(); //         
-        //_sb.append("key: " + htiko + "\n" ); 
-        _nemo = (InventoryItemImpl) hti[i].get(htiko);
-        _sb.append(_nemo.formatReportData_1(_sb));
-        //System.out.println(_sb);
-        // ======== option 1a finish ============================================================
-     
-       
-        _sb.append("\n");
-      }
-    }
-
-
+    System.out.println("");
     printNumLoose();
     printNumClose();
-    System.out.println("");
+    //System.out.println("");
 
+    InventoryItemImpl.formatReportHeadings_1(_sb);
     System.out.println(_sb);
 
+    for (htik = hti.keys(); htik.hasMoreElements();)
+    {
+      _sb.setLength(0);
+      htiko = htik.nextElement(); //         
+      //_sb.append("key: " + htiko + "\n");
+      _nemo = (InventoryItemImpl) hti.get(htiko);
+      _nemo.formatReportData_1(_sb);
+      System.out.println(_sb);
+      //_sb.append(_sb);
+      //_sb.append("\n");
+    }
+    //System.out.println(_sb);
+
     System.out.println("");
     printNumClose();
     printNumLoose();
-    System.out.println("============================================================");
+    String equals = new String();
+    for (int x = 0; x < 65; x++)
+    {
+      equals += "=";
+    }
+    System.out.println(equals);
 
     // === print out the contents of the inflated hashtable (finish) =================================
-
 
     dri.close();
 

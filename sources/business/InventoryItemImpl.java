@@ -4,9 +4,17 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.io.*;
 import useful.*;
-import java.math.BigDecimal;
 
-// igor
+/**
+ * An object of this class - InventoryItemImpl - represents one kind of item that a company keeps in
+ * stock that are ready for sale, for raw materials or partially manufactured goods. * The classes
+ * methods make it possible to: <ul> <li>obtain data from an external file </li> <li>increase and
+ * decrease the stock</li> <li>place sales orders</li> <li>place and receive replenishment
+ * orders</li> <li>monitor ship sales orders</li> <li>produce a report of current stock
+ * condition</li> </ul>
+ *
+ * @author Igor Entaltsev
+ */
 public class InventoryItemImpl implements InventoryItem, Testable, Serializable
 {
 
@@ -52,6 +60,14 @@ public class InventoryItemImpl implements InventoryItem, Testable, Serializable
 //private String a ="";
   //============== 11 METHODS==============================================================
   // =======================METHOD 1. decreaseStock() ============================================
+
+  /**
+   * Decreases the quantityInStock by the amount passed as parameter 1. Returns the message
+   * “Decreased stock of [inventoryId] by [decAmount].”.
+   *
+   * @param decAmount
+   * @return outMsg
+   */
   public String decreaseStock(int decAmount)
   {
     String outMsg = "";
@@ -61,19 +77,19 @@ public class InventoryItemImpl implements InventoryItem, Testable, Serializable
       {
         if ((quantityInStock - decAmount) < 0) // 73
         {
-          outMsg = "You can't take away "+decAmount+", you only have "+quantityInStock +".";
+          outMsg = "You can't take away " + decAmount + ", you only have " + quantityInStock + ".";
         }
         else // 74 
         {
           quantityInStock -= decAmount;
-          outMsg = "Decreased stock of " + inventoryId + " by " + decAmount+".";
+          outMsg = "Decreased stock of " + inventoryId + " by " + decAmount + ".";
         }
       }
 
       while ((quantityInStock + totalOrdered) < reorderPoint) // 75
       {
         System.out.println("Uh-oh, you are below the reorder point. I will do replenishment.");
-        outMsg += "\n" + placeReplenishmentOrder()+".";
+        outMsg += "\n" + placeReplenishmentOrder() + ".";
       }
 
       String timeStamp = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime()); //
@@ -82,7 +98,7 @@ public class InventoryItemImpl implements InventoryItem, Testable, Serializable
     }
     catch (Exception e)
     {
-      System.out.println("Caught exception in decreaseStock() : " + e.getMessage()+".");
+      System.out.println("Caught exception in decreaseStock() : " + e.getMessage() + ".");
       System.out.println("... stack trace follows ...");
       e.printStackTrace(System.out);
     }
@@ -91,36 +107,44 @@ public class InventoryItemImpl implements InventoryItem, Testable, Serializable
   }
 
   // ========= METHOD 2. formatDisplay() ======================================================
-  
+  /**
+   * Appends the data from one object to the StringBuffer passed as parameter 1. <p>This method is
+   * used primarily for testing/checking purposes </p>
+   *
+   * @param sb
+   * @return retval
+   */
   public int formatDisplay(StringBuffer sb)
   {
 
     int retval = 0;
-    sb.append("\n" + "+++++++ formatDisplay() start ++++++++");
-    sb.append(String.format("\n"+"%-9s%-15s%-16s%6s%7s%8s", "Inv Id", "Description", "Package", "Ro-Pt", "Ro-Qty", "U-Price"));
-    sb.append(String.format("\n"+"%32s%14s%7s%8s","Last-Upd","RepOrd", "In Stk","SalOrd"));
-    sb.append(String.format("\n"+"%-9s%-15s%-16s%6d%7d%8.2f", inventoryId, description, pack, reorderPoint, reorderQuantity, unitPrice));
-    sb.append(String.format("\n"+"%34s%12d%7d%5d",lastUpdated,totalOrdered, quantityInStock,totalSalesOrders));
-       
-
-    //sb.append("\n" + "inventoryId: "+inventoryId+", description: "+description+", pack: "+pack+", quantityInStock: "+quantityInStock);
-    //sb.append("\n"+"unitPrice: "+unitPrice+", reorderPoint: " + reorderPoint+", reorderQuantity: " + reorderQuantity+ ", totalOrdered: " + totalOrdered+", totalSalesOrders: " + totalSalesOrders+".");
-    sb.append("\n" + "+++++++ formatDisplay() finish ++++++++");
+    sb.append("\n" + "--------------------- formatDisplay() start ---------------------");
+    sb.append(String.format("\n" + "%-9s%-15s%-16s%6s%7s%8s", "Inv Id", "Description", "Package", "Ro-Pt", "Ro-Qty", "U-Price"));
+    sb.append(String.format("\n" + "%32s%14s%7s%8s", "Last-Upd", "RepOrd", "In Stk", "SalOrd"));
+    sb.append("\n" + "-----------------------------------------------------------------");
+    sb.append(String.format("\n" + "%-9s%-15s%-16s%6d%7d%8.2f", inventoryId, description, pack, reorderPoint, reorderQuantity, unitPrice));
+    sb.append(String.format("\n" + "%34s%12d%7d%5d", lastUpdated, totalOrdered, quantityInStock, totalSalesOrders));
+    sb.append("\n" + "--------------------- formatDisplay() finish ---------------------");
 
     return retval;
   }
 
   // ======-- METHOD 3.  formatReportData_1()============================================================
+  /**
+   * Appends the data from one object, formatted for Report 1, to the StringBuffer passed as
+   * parameter 1.
+   *
+   * @param sb
+   * @return retval
+   */
   public int formatReportData_1(StringBuffer sb)
   {
     int retval = 0;
 
     try
     {
-      sb.append(String.format("\n"+"%-9s%-15s%-16s%6d%7d%8.2f", inventoryId, description, pack, reorderPoint, reorderQuantity, unitPrice));
-      sb.append(String.format("\n"+"%34s%12d%7d%5d",lastUpdated,totalOrdered, quantityInStock,totalSalesOrders));
-      
-
+      sb.append(String.format("\n" + "%-9s%-15s%-16s%6d%7d%8.2f", inventoryId, description, pack, reorderPoint, reorderQuantity, unitPrice));
+      sb.append(String.format("\n" + "%34s%12d%7d%5d", lastUpdated, totalOrdered, quantityInStock, totalSalesOrders));
     }
     catch (Exception e)
     {
@@ -132,7 +156,12 @@ public class InventoryItemImpl implements InventoryItem, Testable, Serializable
   }
 
   // ====================   METHOD 4. formatReportHeadings_1() ===============================================
-  
+  /**
+   * Appends the headings, formatted for Report 1, to the StringBuffer passed as parameter 1.
+   *
+   * @param sb
+   * @return retval
+   */
   public static int formatReportHeadings_1(StringBuffer sb)
   {
     int retval = 0;
@@ -145,9 +174,9 @@ public class InventoryItemImpl implements InventoryItem, Testable, Serializable
         lineOfDashes += "-";
       }
 
-      sb.append("\n" + lineOfDashes);      
-      sb.append(String.format("\n"+"%-9s%-15s%-16s%6s%7s%8s", "Inv Id", "Description", "Package", "Ro-Pt", "Ro-Qty", "U-Price"));
-      sb.append(String.format("\n"+"%32s%14s%7s%8s","Last-Upd","RepOrd", "In Stk","SalOrd"));
+      sb.append("\n" + lineOfDashes);
+      sb.append(String.format("\n" + "%-9s%-15s%-16s%6s%7s%8s", "Inv Id", "Description", "Package", "Ro-Pt", "Ro-Qty", "U-Price"));
+      sb.append(String.format("\n" + "%32s%14s%7s%8s", "Last-Upd", "RepOrd", "In Stk", "SalOrd"));
       sb.append("\n" + lineOfDashes);
 
     }
@@ -161,7 +190,16 @@ public class InventoryItemImpl implements InventoryItem, Testable, Serializable
   }
 
   // ============================ METHOD 5. getData() =======================================
-  
+  /**
+   * Displays prompts and gets data for each instance data item using the DataReaderImpl_1 object
+   * passed as parameter 2. It stores (in CSV format) the data items input in the StringBuffer
+   * passed as parameter 1.
+   *
+   * @param sb
+   * @param br
+   * @param separator
+   * @return err
+   */
   public static int getData(StringBuffer sb, DataReaderImpl_1 br, String separator) // #1
   //throws IOException
   {
@@ -209,6 +247,12 @@ public class InventoryItemImpl implements InventoryItem, Testable, Serializable
   }
 
   // ==================== METHOD 6. getPrimaryKey() ==========================================
+  /**
+   * Returns the value of inventoryId (to be used as the key for a Hashtable or database primary key
+   * or similar purpose).
+   *
+   * @return pk
+   */
   public String getPrimaryKey()
   {
     String pk = "";
@@ -221,6 +265,13 @@ public class InventoryItemImpl implements InventoryItem, Testable, Serializable
   }
 
   // ==================== METHOD 7. increaseStock() ==============================================
+  /**
+   * Increases the quantityInStock by the amount passed as parameter 1. Returns the message
+   * “Increased stock of [inventoryId] by [incAmount].”
+   *
+   * @param incAmount
+   * @return outMag
+   */
   public String increaseStock(int incAmount)
   {
     String outMsg = "";
@@ -233,8 +284,7 @@ public class InventoryItemImpl implements InventoryItem, Testable, Serializable
       if (quantityInStock >= 0)
       {
         quantityInStock += incAmount; // 12 
-        outMsg = "Increased stock of " + inventoryId + " by " + incAmount+".";
-        
+        outMsg = "Increased stock of " + inventoryId + " by " + incAmount + ".";
 
         String timeStamp = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime()); //yyyy-MM-dd_HHmmss
         lastUpdated = timeStamp; // 13 
@@ -251,19 +301,23 @@ public class InventoryItemImpl implements InventoryItem, Testable, Serializable
   }
 
   // ========================  METHOD 8. placeReplenishmentOrder() =========================================
+  /**
+   * Adds the reorderQuantity to the totalOrdered and returns the message “Replenishment
+   * [reorderQuantity] ordered for [inventoryId].” Stores the current date and time in lastUpdated.
+   *
+   * @return outMsg
+   */
   //private
-  public
-    String placeReplenishmentOrder()
+  private String placeReplenishmentOrder()
   {
     String outMsg = "";
 
     try
     {
-      
       totalOrdered += reorderQuantity; // 14
       String timeStamp = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime()); //yyyy-MM-dd_HHmmss
       lastUpdated = timeStamp;
-      outMsg = "Replenishment " + reorderQuantity + " ordered for " + inventoryId+".";
+      outMsg = "Replenishment " + reorderQuantity + " ordered for " + inventoryId + ".";
     }
     catch (Exception e)
     {
@@ -275,6 +329,13 @@ public class InventoryItemImpl implements InventoryItem, Testable, Serializable
   }
   // ===================== METHOD 9. placeSalesOrder() ===============================================
 
+  /**
+   * Adds the qtyOrdered to totalSalesOrders and returns the message “Sales Order of [qtyOrdered]
+   * for [inventoryId].” Stores the current date and time in lastUpdated.
+   *
+   * @param qtyOrdered
+   * @return outMsg
+   */
   public String placeSalesOrder(int qtyOrdered)
   {
     String outMsg = "";
@@ -287,7 +348,7 @@ public class InventoryItemImpl implements InventoryItem, Testable, Serializable
 
         String timeStamp = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime()); //yyyy-MM-dd_HHmmss
         lastUpdated = timeStamp;
-        outMsg = "Sales Order of " + qtyOrdered + " for " + inventoryId+".";
+        outMsg = "Sales Order of " + qtyOrdered + " for " + inventoryId + ".";
       }
     }
     catch (Exception e)
@@ -300,6 +361,15 @@ public class InventoryItemImpl implements InventoryItem, Testable, Serializable
   }
 
   // ================== METHOD 10. receiveReplenishment() ==============================================
+  /**
+   * Reduces the totalOrdered by the qtyReceived then call increaseStock(qtyReceived). Returns the
+   * message “Replenishment received of [qtyReceived] for [inventoryId].” followed by the messages
+   * returned by the call to the increaseStock() method. Stores the current date and time in
+   * lastUpdated.
+   *
+   * @param qtyReceived
+   * @return outMsg
+   */
   public String receiveReplenishment(int qtyReceived)
   {
     String outMsg = "";
@@ -315,7 +385,7 @@ public class InventoryItemImpl implements InventoryItem, Testable, Serializable
         String timeStamp = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime()); //yyyy-MM-dd_HHmmss
         lastUpdated = timeStamp;
 
-        outMsg = "Replenishment received of " + qtyReceived + " for " + inventoryId + ". " + x+"."; // 19
+        outMsg = "Replenishment received of " + qtyReceived + " for " + inventoryId + ". " + x + "."; // 19
       }
 
     }
@@ -325,16 +395,21 @@ public class InventoryItemImpl implements InventoryItem, Testable, Serializable
       System.out.println("... stack trace follows ...");
       e.printStackTrace(System.out);
     } // end of catch{}
-
-
     return outMsg;
-
   }
 
   // ============ METHOD 11. shipSalesOrder() ================================================================
+  /**
+   * Reduces totalSalesOrders by the qtyShipped then calls decreaseStock(qtyShipped). Returns the
+   * message “Goods [qtyShipped] items shipped for [inventoryId].” followed by the message(s)
+   * returned by the call to the decreaseStock() method. Stores the current date and time in
+   * lastUpdated.
+   *
+   * @param qtyShipped
+   * @return outMsg:String
+   */
   public String shipSalesOrder(int qtyShipped)
   {
-
     String outMsg = "";
 
     try
@@ -343,7 +418,7 @@ public class InventoryItemImpl implements InventoryItem, Testable, Serializable
       {
         totalSalesOrders -= qtyShipped;
         String x = decreaseStock(qtyShipped);
-        outMsg = "Goods " + qtyShipped + " items shipped for " + inventoryId +". " + x+".";
+        outMsg = "Goods " + qtyShipped + " items shipped for " + inventoryId + ". " + x + ".";
         String timeStamp = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime()); //yyyy-MM-dd_HHmmss
         lastUpdated = timeStamp;
       }
@@ -360,22 +435,24 @@ public class InventoryItemImpl implements InventoryItem, Testable, Serializable
   }
 
   // =================== METHOD 12. update() ============================================================
-  
+  /**
+   * The StringBuffer passed as parameter 1 is in CSV format and was produced by getData() above.
+   * Creates a StringTokenizer using the first character of the StringBuffer as the separator.
+   * Extracts each token and uses the data to update the instance data items, converting the data as
+   * necessary. Stores the current date and time in lastUpdated.
+   *
+   * @param sb
+   * @return err:int
+   */
   public int update(StringBuffer sb) // 20 
   {
     int err = 0; // 21
     String sep = "";
     StringTokenizer st;
     String temp = "";
-    StringBuffer _sb = new StringBuffer();
-
-    // =================== 1) create a hash map =============================================
-    
-    // ====================== filling the hashtable with rows ================================
 
     try // try 1
     {
-
       sep = String.valueOf(sb.charAt(0)); // 22   
 
       st = new StringTokenizer(sb.toString(), sep); // 23 
@@ -384,95 +461,58 @@ public class InventoryItemImpl implements InventoryItem, Testable, Serializable
       if (!temp.equals("\t"))
       {
         inventoryId = new String(temp); // 25
-        //ht.put("Inventory ID", new String(inventoryId)); // 26
       }
 
       temp = st.nextToken();
       if (!temp.equals("\t"))
       {
         description = new String(temp);
-        //ht.put("Description", new String(description));
       }
 
       temp = st.nextToken();
       if (!temp.equals("\t"))
       {
         pack = new String(temp);
-        //ht.put("Packaging", new String(pack));
       }
 
       temp = st.nextToken();
       if (!temp.equals("\t"))
       {
         quantityInStock = Integer.parseInt(temp);
-        //ht.put("Qty in stock", new Integer(quantityInStock));
-        //ht.put("Qty in stock", new String(String.valueOf(quantityInStock))); // 27
       }
 
       temp = st.nextToken();
       if (!temp.equals("\t"))
       {
         unitPrice = Double.parseDouble(temp);
-        //ht.put("Unit price", new Double(unitPrice));
-        //bd = new BigDecimal(unitPrice);
-        //ht.put("Unit price", new String(String.valueOf(unitPrice))); // 27
-        
-        //ht.put("Unit price", new String(String.valueOf(new BigDecimal(unitPrice)))); // 
       }
 
       temp = st.nextToken();
       if (!temp.equals("\t"))
       {
         reorderPoint = Integer.parseInt(temp);
-        //ht.put("Reorder point", new String(String.valueOf(reorderPoint)));
       }
 
       temp = st.nextToken();
       if (!temp.equals("\t"))
       {
         reorderQuantity = Integer.parseInt(temp);
-        //ht.put("Reorder qty", new String(String.valueOf(reorderQuantity)));
       }
 
       temp = st.nextToken();
       if (!temp.equals("\t"))
       {
         totalOrdered = Integer.parseInt(temp);
-        //ht.put("Total ordered", new String(String.valueOf(totalOrdered)));
       }
 
       temp = st.nextToken();
       if (!temp.equals("\t"))
       {
         totalSalesOrders = Integer.parseInt(temp);
-        //ht.put("Tot.Sal.Orders", new String(String.valueOf(totalSalesOrders)));
       }
 
       String timeStamp = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime()); //yyyy-M-dd_HH:mm:ss
       lastUpdated = timeStamp;
-
-      //ht.put("Last updated", new String(lastUpdated));
-      
-      //=== print out the contents of the hashtable =======================================
-/*
-      htk = ht.keys();
-      System.out.println("\nHere come the hashtable contens");
-      while (htk.hasMoreElements())
-      {
-        htks = (String) htk.nextElement();
-        System.out.println(htks + "\t: " + ht.get(htks));
-      }
-      */
-      // === deflating the hashtable start ==============================================
-      
-      // === deflating the hashtable finish ==============================================
-
-      
-      // === work with the deflated hashtable (start) ================================================
-      
-      // === work with the deflated hashtable (finish) ================================================
-
-
     } // finish fill ht with rows
     catch (Exception e)
     {
@@ -484,50 +524,4 @@ public class InventoryItemImpl implements InventoryItem, Testable, Serializable
     return err;
   }
 // ================ END 12 METHODS 
-  /*
-  public static String[] persistData(Hashtable<Integer, InventoryItemImpl> table, String keyValue)
-  {
-    String[] retval = new String[3];
-    InventoryItemImpl item;
-
-    try
-    {
-
-      int key = Integer.parseInt(keyValue);
-      item = table.get(key); // 
-
-      if (item != null) // in case # item HAS something
-      {
-        retval = new String[3]; // create an array
-        retval[0] = "1";
-        retval[1] = "";
-
-        for (int i = 0; i < prompts.length; i++)
-        {
-          if (prompts[i].indexOf(":") > 0)
-          {
-            prompts[i] = prompts[i].substring(0, prompts[i].indexOf(":")).trim();
-          }
-          retval[1] += "~" + prompts[i];
-        }
-        retval[1] += "~lastUpdated~";
-        retval[2] = "~" + item.inventoryId + "~" + item.description + "~" + item.pack + "~"
-          + item.quantityInStock + "~" + item.unitPrice + "~" + item.reorderPoint + "~"
-          + item.reorderQuantity + "~" + item.totalOrdered + "~" + item.totalSalesOrders + "~"
-          + item.lastUpdated + "~";
-      }
-      else // case # : object DOES NOT exist, item has NOT anything
-      {
-        retval[0] = "0";
-        retval[1] = "<p>0 records selected for : " + keyValue + "</p>";
-      }
-    }
-    catch (Exception e)
-    {
-      System.out.println("Esception caught in abc() " + e.getMessage() + e.getCause());
-    }
-    return retval;
-  }
-  */
-  
 } // end class InventoryItemImpl
