@@ -1,0 +1,624 @@
+
++++StringBuffer $csv after getData() is : ~1~Cleaner~18~HW~%perry%brian%M%194%!416!555!1212!9000!%!123!Main St.!	!Georgetown!ON!L7G 4S5!CAN!%~
+
++++++++++++++++ Test 1++++++++++++
+sb after formatDisplay (empty report form): (((
++++++++++Employee+++++++++
+employeeId : 
+jobTitle   : 
+salary     : 
+payType    : 
++++++++++Person+++++++++
+familyName : 
+givenName  : 
+gender     : 
+height     : 
++++++++++Phone+++++++++
+area      : 
+exchange  : 
+local     : 
+extension : 
++++++end Phone+++++++++
++++++++++Address+++++++++
+number   : 
+street   : 
+suite    : 
+city     : 
+province : 
+postcode : 
+country  : 
++++++end Address+++++++++
++++++end Person+++++++++
++++++end Employee+++++++++)))
+... calculateSalary() is not applicable since this is not a salaried worker.
+
+After update() and formatDisplay(), sb: (((
++++++++++Employee+++++++++
+employeeId : 1
+jobTitle   : Cleaner
+salary     : 18
+payType    : HW
++++++++++Person+++++++++
+familyName : perry
+givenName  : brian
+gender     : M
+height     : 194
++++++++++Phone+++++++++
+area      : 416
+exchange  : 555
+local     : 1212
+extension : 9000
++++++end Phone+++++++++
++++++++++Address+++++++++
+number   : 123
+street   : Main St.
+suite    : 
+city     : Georgetown
+province : ON
+postcode : L7G 4S5
+country  : CAN
++++++end Address+++++++++
++++++end Person+++++++++
++++++end Employee+++++++++)))
++++++++++ end of Test 1+++++++++++
+
+
++++StringBuffer $csv after getData() is : ~2~Procurement Manager~60000~S4~%Smith%Tony%M%170%!905!555!1212!	!%!321!Yonge!1234!Toronto!ON!M5W 1E6!	!%~
+
++++++++++++++++ Test 2++++++++++++
+sb after formatDisplay (empty report form): (((
++++++++++Employee+++++++++
+employeeId : 
+jobTitle   : 
+salary     : 
+payType    : 
++++++++++Person+++++++++
+familyName : 
+givenName  : 
+gender     : 
+height     : 
++++++++++Phone+++++++++
+area      : 
+exchange  : 
+local     : 
+extension : 
++++++end Phone+++++++++
++++++++++Address+++++++++
+number   : 
+street   : 
+suite    : 
+city     : 
+province : 
+postcode : 
+country  : 
++++++end Address+++++++++
++++++end Person+++++++++
++++++end Employee+++++++++)))
+... calculateWages() is not applicable since this is not a wage-worker.
+... calculateUnion() is not applicable since this is not a union member.
+
+After update() and formatDisplay(), sb: (((
++++++++++Employee+++++++++
+employeeId : 2
+jobTitle   : Procurement Manager
+salary     : 60000
+payType    : S4
++++++++++Person+++++++++
+familyName : Smith
+givenName  : Tony
+gender     : M
+height     : 170
++++++++++Phone+++++++++
+area      : 905
+exchange  : 555
+local     : 1212
+extension : 
++++++end Phone+++++++++
++++++++++Address+++++++++
+number   : 321
+street   : Yonge
+suite    : 1234
+city     : Toronto
+province : ON
+postcode : M5W 1E6
+country  : 
++++++end Address+++++++++
++++++end Person+++++++++
++++++end Employee+++++++++)))
++++++++++ end of Test 2+++++++++++
+
+
++++StringBuffer $csv after getData() is : ~3~Disposal Operative~15~HW~%Smithers%Gilbert%M%164%!212!555!1212!376!%!12345!Main Ave.!	!New York!NY!45678!USA!%~
+
++++++++++++++++ Test 3++++++++++++
+sb after formatDisplay (empty report form): (((
++++++++++Employee+++++++++
+employeeId : 
+jobTitle   : 
+salary     : 
+payType    : 
++++++++++Person+++++++++
+familyName : 
+givenName  : 
+gender     : 
+height     : 
++++++++++Phone+++++++++
+area      : 
+exchange  : 
+local     : 
+extension : 
++++++end Phone+++++++++
++++++++++Address+++++++++
+number   : 
+street   : 
+suite    : 
+city     : 
+province : 
+postcode : 
+country  : 
++++++end Address+++++++++
++++++end Person+++++++++
++++++end Employee+++++++++)))
+... calculateSalary() is not applicable since this is not a salaried worker.
+
+After update() and formatDisplay(), sb: (((
++++++++++Employee+++++++++
+employeeId : 3
+jobTitle   : Disposal Operative
+salary     : 15
+payType    : HW
++++++++++Person+++++++++
+familyName : Smithers
+givenName  : Gilbert
+gender     : M
+height     : 164
++++++++++Phone+++++++++
+area      : 212
+exchange  : 555
+local     : 1212
+extension : 376
++++++end Phone+++++++++
++++++++++Address+++++++++
+number   : 12345
+street   : Main Ave.
+suite    : 
+city     : New York
+province : NY
+postcode : 45678
+country  : USA
++++++end Address+++++++++
++++++end Person+++++++++
++++++end Employee+++++++++)))
++++++++++ end of Test 3+++++++++++
+
+
++++StringBuffer $csv after getData() is : ~4~Paper-folder~20~HW~%Dover%Ben%M%156%!111!222!3333!444!%!55!Hag Lane!	!Boring!OR!1357!USA!%~
+
++++++++++++++++ Test 4++++++++++++
+sb after formatDisplay (empty report form): (((
++++++++++Employee+++++++++
+employeeId : 
+jobTitle   : 
+salary     : 
+payType    : 
++++++++++Person+++++++++
+familyName : 
+givenName  : 
+gender     : 
+height     : 
++++++++++Phone+++++++++
+area      : 
+exchange  : 
+local     : 
+extension : 
++++++end Phone+++++++++
++++++++++Address+++++++++
+number   : 
+street   : 
+suite    : 
+city     : 
+province : 
+postcode : 
+country  : 
++++++end Address+++++++++
++++++end Person+++++++++
++++++end Employee+++++++++)))
+... calculateSalary() is not applicable since this is not a salaried worker.
+
+After update() and formatDisplay(), sb: (((
++++++++++Employee+++++++++
+employeeId : 4
+jobTitle   : Paper-folder
+salary     : 20
+payType    : HW
++++++++++Person+++++++++
+familyName : Dover
+givenName  : Ben
+gender     : M
+height     : 156
++++++++++Phone+++++++++
+area      : 111
+exchange  : 222
+local     : 3333
+extension : 444
++++++end Phone+++++++++
++++++++++Address+++++++++
+number   : 55
+street   : Hag Lane
+suite    : 
+city     : Boring
+province : OR
+postcode : 1357
+country  : USA
++++++end Address+++++++++
++++++end Person+++++++++
++++++end Employee+++++++++)))
++++++++++ end of Test 4+++++++++++
+
+
++++StringBuffer $csv after getData() is : ~5~In charge of the big door~70000~S4~%Getoff%Kent%M%190%!555!666!7777!888!%!100!Awesome St.!	!Acme!WV!10101!USA!%~
+
++++++++++++++++ Test 5++++++++++++
+sb after formatDisplay (empty report form): (((
++++++++++Employee+++++++++
+employeeId : 
+jobTitle   : 
+salary     : 
+payType    : 
++++++++++Person+++++++++
+familyName : 
+givenName  : 
+gender     : 
+height     : 
++++++++++Phone+++++++++
+area      : 
+exchange  : 
+local     : 
+extension : 
++++++end Phone+++++++++
++++++++++Address+++++++++
+number   : 
+street   : 
+suite    : 
+city     : 
+province : 
+postcode : 
+country  : 
++++++end Address+++++++++
++++++end Person+++++++++
++++++end Employee+++++++++)))
+... calculateWages() is not applicable since this is not a wage-worker.
+... calculateUnion() is not applicable since this is not a union member.
+
+After update() and formatDisplay(), sb: (((
++++++++++Employee+++++++++
+employeeId : 5
+jobTitle   : In charge of the big door
+salary     : 70000
+payType    : S4
++++++++++Person+++++++++
+familyName : Getoff
+givenName  : Kent
+gender     : M
+height     : 190
++++++++++Phone+++++++++
+area      : 555
+exchange  : 666
+local     : 7777
+extension : 888
++++++end Phone+++++++++
++++++++++Address+++++++++
+number   : 100
+street   : Awesome St.
+suite    : 
+city     : Acme
+province : WV
+postcode : 10101
+country  : USA
++++++end Address+++++++++
++++++end Person+++++++++
++++++end Employee+++++++++)))
++++++++++ end of Test 5+++++++++++
+
+
++++StringBuffer $csv after getData() is : ~6~Penguinologist~28~HW~%Krabbs%Lotta%F%175%!666!777!8888!999!%!12!Bathtub Row!	!Poopoo!HI!23456!USA!%~
+
++++++++++++++++ Test 6++++++++++++
+sb after formatDisplay (empty report form): (((
++++++++++Employee+++++++++
+employeeId : 
+jobTitle   : 
+salary     : 
+payType    : 
++++++++++Person+++++++++
+familyName : 
+givenName  : 
+gender     : 
+height     : 
++++++++++Phone+++++++++
+area      : 
+exchange  : 
+local     : 
+extension : 
++++++end Phone+++++++++
++++++++++Address+++++++++
+number   : 
+street   : 
+suite    : 
+city     : 
+province : 
+postcode : 
+country  : 
++++++end Address+++++++++
++++++end Person+++++++++
++++++end Employee+++++++++)))
+... calculateSalary() is not applicable since this is not a salaried worker.
+
+After update() and formatDisplay(), sb: (((
++++++++++Employee+++++++++
+employeeId : 6
+jobTitle   : Penguinologist
+salary     : 28
+payType    : HW
++++++++++Person+++++++++
+familyName : Krabbs
+givenName  : Lotta
+gender     : F
+height     : 175
++++++++++Phone+++++++++
+area      : 666
+exchange  : 777
+local     : 8888
+extension : 999
++++++end Phone+++++++++
++++++++++Address+++++++++
+number   : 12
+street   : Bathtub Row
+suite    : 
+city     : Poopoo
+province : HI
+postcode : 23456
+country  : USA
++++++end Address+++++++++
++++++end Person+++++++++
++++++end Employee+++++++++)))
++++++++++ end of Test 6+++++++++++
+
+
++++StringBuffer $csv after getData() is : ~7~Rasputin Impersonator~43000~S4~%MacKrakken%Phil%M%188%!777!888!9999!100!%!23!Digestion St.!23!My Large Intestine!TX!22233!USA!%~
+
++++++++++++++++ Test 7++++++++++++
+sb after formatDisplay (empty report form): (((
++++++++++Employee+++++++++
+employeeId : 
+jobTitle   : 
+salary     : 
+payType    : 
++++++++++Person+++++++++
+familyName : 
+givenName  : 
+gender     : 
+height     : 
++++++++++Phone+++++++++
+area      : 
+exchange  : 
+local     : 
+extension : 
++++++end Phone+++++++++
++++++++++Address+++++++++
+number   : 
+street   : 
+suite    : 
+city     : 
+province : 
+postcode : 
+country  : 
++++++end Address+++++++++
++++++end Person+++++++++
++++++end Employee+++++++++)))
+... calculateWages() is not applicable since this is not a wage-worker.
+... calculateUnion() is not applicable since this is not a union member.
+
+After update() and formatDisplay(), sb: (((
++++++++++Employee+++++++++
+employeeId : 7
+jobTitle   : Rasputin Impersonator
+salary     : 43000
+payType    : S4
++++++++++Person+++++++++
+familyName : MacKrakken
+givenName  : Phil
+gender     : M
+height     : 188
++++++++++Phone+++++++++
+area      : 777
+exchange  : 888
+local     : 9999
+extension : 100
++++++end Phone+++++++++
++++++++++Address+++++++++
+number   : 23
+street   : Digestion St.
+suite    : 23
+city     : My Large Intestine
+province : TX
+postcode : 22233
+country  : USA
++++++end Address+++++++++
++++++end Person+++++++++
++++++end Employee+++++++++)))
++++++++++ end of Test 7+++++++++++
+
+
++++StringBuffer $csv after getData() is : ~8~DoodyCalls Technician~21~HW~%de Alcantara Maria Fernando Miguel Rafael Gonzaga Xavier Joao Antonio Leopoldo Vitor Francisco de Assis Julio Amelio de Saxe-Coburgo-Gotha e Braganca%Pedro%M%156%!888!999!1111!222!%!345!Hillbilly Ln.!999!Taumatawhakatangihangakoauauotamateapokaiwhenuakitanatahu!PA!98989!USA!%~
+
++++++++++++++++ Test 8++++++++++++
+sb after formatDisplay (empty report form): (((
++++++++++Employee+++++++++
+employeeId : 
+jobTitle   : 
+salary     : 
+payType    : 
++++++++++Person+++++++++
+familyName : 
+givenName  : 
+gender     : 
+height     : 
++++++++++Phone+++++++++
+area      : 
+exchange  : 
+local     : 
+extension : 
++++++end Phone+++++++++
++++++++++Address+++++++++
+number   : 
+street   : 
+suite    : 
+city     : 
+province : 
+postcode : 
+country  : 
++++++end Address+++++++++
++++++end Person+++++++++
++++++end Employee+++++++++)))
+... calculateSalary() is not applicable since this is not a salaried worker.
+
+After update() and formatDisplay(), sb: (((
++++++++++Employee+++++++++
+employeeId : 8
+jobTitle   : DoodyCalls Technician
+salary     : 21
+payType    : HW
++++++++++Person+++++++++
+familyName : de Alcantara Maria Fernando Miguel Rafael Gonzaga Xavier Joao Antonio Leopoldo Vitor Francisco de Assis Julio Amelio de Saxe-Coburgo-Gotha e Braganca
+givenName  : Pedro
+gender     : M
+height     : 156
++++++++++Phone+++++++++
+area      : 888
+exchange  : 999
+local     : 1111
+extension : 222
++++++end Phone+++++++++
++++++++++Address+++++++++
+number   : 345
+street   : Hillbilly Ln.
+suite    : 999
+city     : Taumatawhakatangihangakoauauotamateapokaiwhenuakitanatahu
+province : PA
+postcode : 98989
+country  : USA
++++++end Address+++++++++
++++++end Person+++++++++
++++++end Employee+++++++++)))
++++++++++ end of Test 8+++++++++++
+
+>>>> data-entry loop ended with return code: -1
+
+
+         1         2         3         4         5         6
+12345678901234567890123456789012345678901234567890123456789012345
+-----------------------------------------------------------------
+
+Seneca College Payslip      Period 01                2013-04-12
+
+---- =======================================--------- ==========
+   1 Cleaner                              HW
+
+     INCOME                                   ThisPay YearToDate
+       Gross Pay                               720.00     720.00
+     DEDUCTIONS                                                  
+       Income Tax                               72.00      72.00
+       Pension                                  43.20      43.20
+       Union Dues                                2.00       2.00
+
+     NET PAY                                   602.80     602.80
+     PAID IN TO BANK                           602.80
+
+   2 Procurement Manager                  S4
+
+     INCOME                                   ThisPay YearToDate
+       Gross Pay                              4615.38    4615.38
+     DEDUCTIONS                                                  
+       Income Tax                              461.54     461.54
+       Pension                                 276.92     276.92
+       Union Dues                         
+
+     NET PAY                                  3876.92    3876.92
+     PAID IN TO BANK                          3876.92
+
+   3 Disposal Operative                   HW
+
+     INCOME                                   ThisPay YearToDate
+       Gross Pay                               600.00     600.00
+     DEDUCTIONS                                                  
+       Income Tax                               60.00      60.00
+       Pension                                  36.00      36.00
+       Union Dues                                2.00       2.00
+
+     NET PAY                                   502.00     502.00
+     PAID IN TO BANK                           502.00
+
+   4 Paper-folder                         HW
+
+     INCOME                                   ThisPay YearToDate
+       Gross Pay                               800.00     800.00
+     DEDUCTIONS                                                  
+       Income Tax                               80.00      80.00
+       Pension                                  48.00      48.00
+       Union Dues                                2.00       2.00
+
+     NET PAY                                   670.00     670.00
+     PAID IN TO BANK                           670.00
+
+   5 In charge of the big door            S4
+
+     INCOME                                   ThisPay YearToDate
+       Gross Pay                              5384.62    5384.62
+     DEDUCTIONS                                                  
+       Income Tax                              538.46     538.46
+       Pension                                 323.08     323.08
+       Union Dues                         
+
+     NET PAY                                  4523.08    4523.08
+     PAID IN TO BANK                          4523.08
+
+   6 Penguinologist                       HW
+
+     INCOME                                   ThisPay YearToDate
+       Gross Pay                              1120.00    1120.00
+     DEDUCTIONS                                                  
+       Income Tax                              112.00     112.00
+       Pension                                  67.20      67.20
+       Union Dues                                2.00       2.00
+
+     NET PAY                                   938.80     938.80
+     PAID IN TO BANK                           938.80
+
+   7 Rasputin Impersonator                S4
+
+     INCOME                                   ThisPay YearToDate
+       Gross Pay                              3307.69    3307.69
+     DEDUCTIONS                                                  
+       Income Tax                              330.77     330.77
+       Pension                                 198.46     198.46
+       Union Dues                         
+
+     NET PAY                                  2778.46    2778.46
+     PAID IN TO BANK                          2778.46
+
+   8 DoodyCalls Technician                HW
+
+     INCOME                                   ThisPay YearToDate
+       Gross Pay                               840.00     840.00
+     DEDUCTIONS                                                  
+       Income Tax                               84.00      84.00
+       Pension                                  50.40      50.40
+       Union Dues                                2.00       2.00
+
+     NET PAY                                   703.60     703.60
+     PAID IN TO BANK                           703.60
+
+-----------------------------------------------------------------
+12345678901234567890123456789012345678901234567890123456789012345
+         1         2         3         4         5         6

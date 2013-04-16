@@ -1,4 +1,4 @@
-// Person.java - an early version ... to be improved soon
+// Phone.java - an early version ... to be improved soon
 
 package business;
 
@@ -7,42 +7,40 @@ import java.util.*;      // needed for StringTokenizer
 
 import useful.*;         // for MyDataReader
 
-
 /**
-* Represents a real Person (expects to be used as a base for
-* several other classes so has minimal information)
+* Represents a real phone number (instance variable names are as in North
+* America although would be usable in other parts of the world)
+*
 */
-public class Person  implements Serializable
+public class Phone implements Serializable
 {
-  private String  familyName;
-  private String  givenName;
-  private String  gender;
-  private String  height;
-  
-  private Phone homePhone;
-  private Address homeAddress;
-  
+  private String  area;
+  private String  exchange;
+  private String  local;
+  private String  extension;
    //----static data----------------------
    
    private static String[] prompts =
    {
-     "familyName",
-     "givenName",
-     "gender",
-     "height"
+     "area",
+     "exchange",
+     "local",
+     "extension"
    };
    
   //---- constructors----------------------
-   
-  public Person()
+ 
+  /**
+  * Initializes the the reference variables to sensible
+  * not-null values.
+  */  
+  public Phone()
   {
     // make sure there are no null references in here
-    familyName  = "";
-    givenName   = "";
-    gender      = "";
-    height      = "";
-    homePhone   = new Phone();
-    homeAddress = new Address();
+    area  = "";
+    exchange   = "";
+    local      = "";
+    extension  = "";
   }
   
 
@@ -56,14 +54,12 @@ public class Person  implements Serializable
    public int formatDisplay(StringBuffer temp)
    {
      int retval = 0;
-     temp.append("\n" + "+++++++++Person+++++++++");     
-     temp.append("\n" + "familyName : " + familyName);
-     temp.append("\n" + "givenName  : " + givenName);
-     temp.append("\n" + "gender     : " + gender);
-     temp.append("\n" + "height     : " + height);
-     homePhone.formatDisplay(temp);
-     homeAddress.formatDisplay(temp);
-     temp.append("\n" + "+++++end Person+++++++++");     
+     temp.append("\n" + "+++++++++Phone+++++++++");     
+     temp.append("\n" + "area      : " + area);
+     temp.append("\n" + "exchange  : " + exchange);
+     temp.append("\n" + "local     : " + local);
+     temp.append("\n" + "extension : " + extension);
+     temp.append("\n" + "+++++end Phone+++++++++");     
 	   return retval;
    }
 
@@ -76,19 +72,6 @@ public class Person  implements Serializable
     int retval = 0;
       
     retval = Useful.getData(prompts, sb, br, sep);
-    
-    
-
-    // now get the Phone data by calling class Phone getData() 
-    
-    Phone.getData(sb, br, "!");
-    sb.append(sep);              // add the PersonSeparator
-   
-    // now get the Address data by calling class Address getData() 
-    
-    Address.getData(sb, br, "!");
-    sb.append(sep);              // add the PersonSeparator
-    
     return retval;
   }
   // end of method
@@ -118,46 +101,30 @@ public class Person  implements Serializable
     if (! temp.equals("\t"))
     {
       // String, use as is
-      familyName = new String(temp);
+      area = new String(temp);
     }
 
     temp = tk.nextToken();
     if (! temp.equals("\t"))
     {
       // String, use as is
-      givenName = new String(temp);
+      exchange = new String(temp);
     }
 
     temp = tk.nextToken();
     if (! temp.equals("\t"))
     {
       // String, use as is
-      gender = new String(temp);
+      local = new String(temp);
     }
 
     temp = tk.nextToken();
     if (! temp.equals("\t"))
     {
       // String, use as is
-      height = new String(temp);
-    }
-    
-    // deal with Phone CSV as a token withiin Person CSV
-    temp = tk.nextToken();
-    if (! temp.equals("\t"))
-    {
-      // is a CSV String for a class Phone object
-      homePhone.update(new StringBuffer(temp));
+      extension = new String(temp);
     }
 
-
-    // deal with Address CSV as a token withiin Person CSV
-    temp = tk.nextToken();
-    if (! temp.equals("\t"))
-    {
-      // is a CSV String for a class Address object
-      homeAddress.update(new StringBuffer(temp));
-    }
 
     return retval; // indicate OK (i.e. no errors)
   } // end of update

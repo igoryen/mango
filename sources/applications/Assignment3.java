@@ -4,8 +4,8 @@ package applications;
 import java.io.*;
 import java.util.*;
 import business.*;
+import java.text.SimpleDateFormat;
 import useful.*;
-
 
 /**
  * Purpose is to test class Employee ... which involves. <ul> <li>making one or more objects of the class</li> <li>calling each constructor at least
@@ -13,14 +13,22 @@ import useful.*;
  * <p>examining the return value</p> <p>examining the data in the object concerned</p> </li> </ul>
  *
  * <p>This program creates a Hashtable and adds each Employee object to it as it is made. Before the end of each run the Hashtable is serialized into
- * file (serial.out). At the start of each run it allows for the possibility that there is an existing serialized file (serial.in) and will
- * deserialize if if found to populate the Hashtable. If there is no serialized input it will create an empty Hashtable. This application currently
- * does NOT update existing Hashtable objects, but will add new ones using data input in the normal manner.</p>
+ * file (Assign3.ser).</p>
+ * <p>
+ * The private fields:
+ * <ol>
+ * <li>private DataReaderImpl_1 dri;  // reader based on standard input</li>
+ * <li>private Hashtable ht = new Hashtable(); </li>
+ * <li>private StringBuffer reportBag = new StringBuffer(); // to accumulate the data from each instance of class Employee</li>
+ * </ol>
+ * </p>
  *
  * <p> Run instructions...
- * <pre>
- * java TestEmployeeHS [ &lt; Employee.txt ]
- * </pre> </p>
+* <pre>
+ * java applications.Assignment3 [&lt; ../data/Employee.txt] 
+ * </pre>
+ * @author Igor Entaltsev
+ * @version 1.0
  *
  */
 public class Assignment3
@@ -33,17 +41,64 @@ public class Assignment3
   private Hashtable ht = new Hashtable(); //
   private Hashtable hti = new Hashtable();
   private Employee nemo_inf; //to be used at deserialization 
-  //=========finish declaring instance data================================================================
+  private StringBuffer reportBag = new StringBuffer();
 
+  //=========finish declaring instance data================================================================
+  
+  //=================START METHODS DECLARATION===============================================================
+  // alphabetically by method name
+  
+  //=============start METHOD init() ===================================================================
   /**
-   * Perform initialization tasks when the program starts. <ul> <li>process the command-line options (from param list)</li> <li>open file(s) as
+   * Perform initialization tasks when the program starts. 
+   * <ul> 
+   * <li>process the command-line options (from param list)</li> <li>open file(s) as
    * necessary</li> <li>open network-connection(s) as necessary</li> </ul>
    *
    * @param args the command line arguments
    */
+  public void init(String[] args) throws IOException, ClassNotFoundException
+  {
+    // open a suitable input stream on standard input
+    dri = new DataReaderImpl_1();
+    int retval = 0;
+    retval = formatHeadings(reportBag);
+  } // end init()
+  //=============finish METHOD init() ===================================================================
+  
+  
+
+  // ============start METHOD formatHeadings() =========================================================
+  /**
+   * This method creates headings for the report with the current date.
+   * @param sb
+   * @return retval (the error status)
+   */
+  public static int formatHeadings(StringBuffer sb)
+  {
+    int retval = 0;
+    String timeStamp = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime()); //yyyy-MM-dd_HHmmss
+    try
+    {
+      //sb.append("\n" + "--------------------- start formatHeadings() ---------------------");
+      sb.append(String.format("\n" + "%-22s%15s%27s", "Seneca College Payslip", "Period 01", timeStamp + "\n"));
+      sb.append("\n" + "---- =======================================--------- =========="); // 39= 10- 10=
+      //sb.append("\n" + "--------------------- finish formatHeadings() ---------------------");
+    }
+    catch (Exception e)
+    {
+      System.out.println("******************************************************************");
+      System.out.println("Caught exception in formatReportHeadings_1() : " + e.getMessage());
+      System.out.println("... stack trace follows ...");
+      e.printStackTrace(System.out);
+      System.out.println("******************************************************************");
+    }
+    return retval;
+  }
+  // ===================== METHOD formatHeadings() (bottom) =====================================================
   // ========== start method printNumClose()  ==================================================================
   /**
-   * The method is used to print a row of numbers without spaces.
+   * The method is used to print a row of 65 numbers without spaces used as a sort of ruler.
    */
   private void printNumClose() // prints 1234567890123....
   {
@@ -59,10 +114,10 @@ public class Assignment3
     System.out.print("12345\n");
   }
   // ========== finish method printNumClose()  ==============================================================
+  
   // ========== start method printNumLoose()   ==============================================================
-
   /**
-   * The method is used to print a row of numbers with spaces.
+   * The method is used to print a row of numbers with spaces equal to 10 numbers used as a sort of ruler.
    */
   private void printNumLoose()  // prints      1      2      3...
   {
@@ -76,21 +131,20 @@ public class Assignment3
     }
     System.out.print("\n");
   }
-  // ========== finish printNumLoose()  ==============================================================
-  //=============start METHOD init() ===================================================================
+  // ========== finish METHOD printNumLoose()  ==============================================================
 
-  public void init(String[] args) throws IOException, ClassNotFoundException
-  {
-    // open a suitable input stream on standard input
-    dri = new DataReaderImpl_1();
-  } // end init()
-  //=============finish METHOD init() ===================================================================
 
   //=============== start METHOD run() ==================================================================
   /**
-   * Do major part of processing, probably in a loop. <ul> <li>possibly call static method(s) of class</li> <li>make object(s) of other classes (by
-   * calling constructor(s))</li> <li>call instance method(s) of those classes <p>display return value for examination</p> <p>display contents of
-   * class variables or objects affected</p> </li> </ul>
+   * Does major part of processing in a while loop. 
+   * <ul> 
+   * <li>calls static method(s) of class Employee</li> 
+   * <li>instantiates classes :Address, :Phone (by calling their constructor)</li> 
+   * <li>calls instance method(s) of the classes 
+   * <p>displays return value for examination</p> 
+   * <p>displays contents of class variables or objects affected</p> 
+   * </li> 
+   * </ul>
    */
   public void run() throws IOException
   {
@@ -99,8 +153,7 @@ public class Assignment3
     Employee nemo;                         // object of class Employee
     int returned = 0;                 // value to be returned
     StringBuffer sb = new StringBuffer(128);   // empty string for displaying
-
-
+    
     try
     {
       // get first set of data
@@ -119,51 +172,80 @@ public class Assignment3
         //System.out.println("nemo, immediately after construction (no-param construc tor), follows");
         sb.setLength(0);
 
-        
+
         //============= displaying empty form ==================================
         returned = nemo.formatDisplay(sb);
-        //System.out.println("sb after formatDisplay (empty report form): ((("+ sb+")))"); // empty fields
+        System.out.println("sb after formatDisplay (empty report form): ((("+ sb+")))"); // empty fields
         //============= finish displaying empty form ==================================
 
 
         //============= filling the form (partially) ========================================================================
         nemo.update(csv);
         sb.setLength(0);
-        
+
         //System.out.println("sb after update and formatDisplay: ((("+sb+")))");
         //============= finish filling the form ========================================================================
 
-        
+
         //================= testing payroll methods ====================================================================
 
         //================= testing payroll method calculateSalary() =====================================
-        System.out.println("Testing method calculateSalary()...");
+        //System.out.println("Testing method calculateSalary()...");
         nemo.calculateSalary();
         //=================================================================================================
 
         //================= testing payroll method calculateWages() =====================================
-        System.out.println("\nTesting method calculateWages(40)...");
+        //System.out.println("\nTesting method calculateWages(40)...");
         nemo.calculateWages(40);
         //=================================================================================================
+        
+        
+        
+        //================= testing payroll method calculatePension() =====================================
+        //System.out.println("\nTesting method calculatePension()...");
+        nemo.calculatePension();
+        //=================================================================================================
+        
+        
 
-        
-        //==================testing payroll method calculateTax() ================================
-        System.out.println("\nTesting method calculateTax()...");
+
+        //==================start testing payroll method calculateTax() ================================
+        //System.out.println("\nTesting method calculateTax()...");
         nemo.calculateTax();
-        // ===================================================================================
+        //==================finish testing payroll method calculateTax() ================================
         
-        //==================testing payroll method calculateUnion() ================================
-        System.out.println("\nTesting method calculateUnion()...");
+        
+
+        //==================start testing payroll method calculateUnion() ================================
+        //System.out.println("\nTesting method calculateUnion()...");
         nemo.calculateUnion();
-        // ===================================================================================
+        //================== finish testing payroll method calculateUnion() ================================
         
         
+
+        //================== start testing method formatDisplay() =============================
         returned = nemo.formatDisplay(sb);
-        System.out.println("\nAfter update() and formatDisplay(), sb: ((("+sb+")))");
+        System.out.println("\nAfter update() and formatDisplay(), sb: (((" + sb + ")))");
+        //================== finish testing method formatDisplay() =============================
         
         
+
+        //===================== start testing method formatPaySlip() ======================
+        sb.setLength(0); // empty the $sb before filling it again
+        returned = nemo.formatPaySlip(sb); // filling $sb again
+        //System.out.println("\nAfter formatSlip(), sb: (((\n" + sb + ")))");
+        //===================== finish testing method formatPaySlip() ======================
+        
+        
+
+        // ================== start adding the data from this.formatPaySlip() into $reportBag ============
+        //sb.setLength(0); 
+        returned = nemo.formatPaySlip(reportBag);
+        //System.out.println("\nAfter formatSlip(), reportBag: (((\n"+reportBag+")))"); 
+        // ================== finish adding the data from this.formatPaySlip() into $reportBag =============
         
         //================= finish testing payroll methods ====================================================================
+        
 
         //=========== start adding the current object to hashtable "ht"  ===============================================
         try
@@ -212,8 +294,12 @@ public class Assignment3
 
   // ====================== start METHOD wrap() ===================================================================
   /**
-   * Do any cleanup tasks just before the program ends. <ul> <li>close file(s) used</li> // standard input does not need closing !!! (but you could)
-   * <li>close network-connections(s) used</li> <li>In this case serialize the Hashtable of Employee objects </ul>
+   * Does any cleanup tasks just before the program ends. 
+   * <ul> 
+   * <li>closes file(s) used</li> // standard input does not need closing !!! (but you could)
+   * <li>Serializes the Hashtable of Employee objects </li>
+   * <li>Prints out the data from every object:Employee</li>
+   * </ul>
    */
   public void wrap() throws IOException
   {
@@ -228,14 +314,10 @@ public class Assignment3
     {
       lineOfDashes += "-";
     }
-
-
-
-    //InventoryItemImpl htiv;
     //================= finish hashtable map ==================================================
 
 
-    // ========== start deflating (serializing) the hashtable  ==============================================
+    // ========== start deflating (serializing) the hashtable  =========================================================================================================
     try
     {
       // ============ start making a suitable output stream  ===================================
@@ -243,9 +325,11 @@ public class Assignment3
       ObjectOutputStream oos = new ObjectOutputStream(fos);
       // ============ finish making a suitable output stream  ===================================
 
+
       //================= start the serialization  =======================================
       oos.writeObject(ht);
       //================= finish the serialization  =======================================
+
 
       // =============== start flush and close the output file =============================
       oos.flush();
@@ -263,7 +347,9 @@ public class Assignment3
 
     }
 
-    //=================== finish deflating (serializing) the hashtable  ========================================
+    //=================== finish deflating (serializing) the hashtable  ================================================================================================
+
+
 
     //=================== inflating (deserializing) the Hashtable =========================================
     try
@@ -286,37 +372,57 @@ public class Assignment3
 
     }
     //=================== finish inflating (deserializing) the Hashtable =========================================
-    //=================== printing out the contents of the inflated hashtable ==============================
 
-    System.out.println("");
+    /*
+     //=================== printing out the contents of the inflated hashtable ====================================
+     System.out.println("Printint out the contents of the inflated hashtable");
+     printNumLoose();
+     printNumClose();
+     System.out.println(lineOfDashes);
+
+     formatHeadings(sb);
+     System.out.println(sb);
+
+     for (htik = hti.keys(); htik.hasMoreElements();)
+     {
+     sb.setLength(0);
+     htiko = htik.nextElement();
+     nemo_inf = (Employee) hti.get(htiko);
+     nemo_inf.formatPaySlip(sb);
+     System.out.println(sb);
+
+     }// end for()
+
+     //System.out.println("");
+     System.out.println(lineOfDashes);
+     printNumClose();
+     printNumLoose();
+     //=================== finish printing out the contents of the inflated hashtable ==============================    
+     */
+     
+    // ========================== start printing out the contents of $reportBag ===================================
+    System.out.println("\n");
     printNumLoose();
     printNumClose();
     System.out.println(lineOfDashes);
-
-    Employee.formatHeadings(sb);
-    System.out.println(sb);
-
-    for (htik = hti.keys(); htik.hasMoreElements();)
-    {
-      sb.setLength(0);
-      htiko = htik.nextElement();
-      nemo_inf = (Employee) hti.get(htiko);
-      nemo_inf.formatPaySlip(sb);
-      System.out.println(sb);
-
-    }// end for()
-
-    //System.out.println("");
+    //reportBag.append("\n");
+    System.out.println(reportBag);
     System.out.println(lineOfDashes);
     printNumClose();
     printNumLoose();
-    //=================== finish printing out the contents of the inflated hashtable ==============================
+    // ========================== finish printing out the contents of $reportBag ===================================
+
   } // end method
   // ====================== finish METHOD wrap() ===================================================================
 
+  //========================FINISH METHODS DECLARATION =======================================================
+  
+  //=======================start METHOD main() ==============================================================
   /**
-   * Makes an object of its own class then calls instance methods to perform the application tasks. This is the first method called when the program
-   * starts.
+   * This is the first method called when the program starts.<ol>
+   * <li>Makes an object of its own class </li>
+   * <li>Calls instance methods to perform the application tasks. </li>   
+   * </ol>
    *
    * @param args the command line arguments
    */
@@ -326,6 +432,8 @@ public class Assignment3
     theApp.init(args);
     theApp.run();
     theApp.wrap();
-  } // end main()
+  } 
+    //=======================finish METHOD main() ==============================================================
+
 }  // end class
 

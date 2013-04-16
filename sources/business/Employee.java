@@ -8,17 +8,30 @@ import java.util.*;      // needed for StringTokenizer
 import useful.*;         // for MyDataReader
 
 /**
- * Represents an real-world Employee. Could have methods to calculate pay to be used for a Payroll application.
+ * Class Employee represents a real-world Employee. Could have methods to calculate pay to be used for a Payroll application. <p>Run instructions:
+ * <pre>
+ * java applications.Assignment3 [&lt; ../data/Employee.txt]
+ * </pre> <ol> <li>private String employeeId;<i></i></li> <li>private String jobTitle;<i></i></li> <li>private String salary;<i> // either the hourly
+ * rate for wage workers or the annual salary for salaried workers</i></li> <li>private String payType;<i></i> // payment type - by the hour or
+ * salary</li> <li>private double grossThisPay;<i></i> // gross pay this payment period</li> <li>private double taxThisPay;<i> // tax deduction for
+ * this payment period</i></li> <li>private double pensionThisPay;<i></i> // pension deduction for this payment period</li> <li>private double
+ * unionThisPay;<i></i> // union fee deduction for this payment period</li> <li>private double netThisPay;<i></i> // net pay for this payment
+ * period</li> <li>private double grossYTD;<i></i> // gross for year-to-date</li> <li>private double taxYTD;<i></i></li> <li>private double
+ * pensionYTD;<i></i></li> <li>private double unionYTD;<i></i></li> <li>private double netYTD;<i></i></li> <li>private static String[] prompts<i></i>
+ * // the prompts that are displayed for the user to enter data</li> </ol> </p>
+ *
+ * @version 1.0
+ * @author Igor Entaltsev
  * 
 */
-public class Employee implements Serializable, Testable
+public class Employee extends Person implements Serializable, Testable
 {
-
+  
   private String employeeId;
   private String jobTitle;
   private String salary;
   private String payType;
-  //---- new vars for A3 (top) ------------------
+  //---- start new vars for A3 ------------------
   //---- this pay period -------------------
   private double grossThisPay;
   private double taxThisPay;
@@ -31,47 +44,82 @@ public class Employee implements Serializable, Testable
   private double pensionYTD;
   private double unionYTD;
   private double netYTD;
-  //-----new vars for A3 (bottom) ------------------
-//========================= static data (top) ======================================================================
+  //-----finish new vars for A3  ------------------
+//========================= start declaring static data ======================================================================
   private static String[] prompts =
   {
-    "employeeId     : ",
-    "jobTitle       : ",
-    "salary         : ",
-    "payType        : ",
+    "employeeId: ",
+    "jobTitle: ",
+    "salary: ",
+    "payType: ",
   };
-//========================= static data (bottom) ======================================================================
+//========================= finish declaring static data (bottom) ======================================================================
 
-  // ===================== constructors (top) ===========================================================
+  // ===================== start constructors ===========================================================
+  /**
+   * The application has only one constructor.
+   */
   public Employee()
   {
-    //super();   // call the base class constructor
+    super();   // calling the constructor of class Person (the base class)
 
     // make sure there are no null references in here
     employeeId = "";
     jobTitle = "";
     salary = "";
     payType = "";
-
+    
     grossThisPay = 0.00;
-
+    
     taxThisPay = 0.00;
     pensionThisPay = 0.00;
     unionThisPay = 2.00;
     netThisPay = 0.00;
-
+    
     grossYTD = 0.00;
-
+    
     taxYTD = 0.00;
     pensionYTD = 0.00;
     unionYTD = 2.00;
     netYTD = 0.00;
-
+    
   }
-  // ===================== constructors (bottom) ===========================================================
+  // ===================== finish constructors  ===========================================================
 
-  //======================== M.E.T.H.O.D.S. (top) ================================================================
-  // ===================== METHOD calculateSalary() (top) ===========================================================
+  //======================== START METHODS ================================================================
+  // alphabetically by method name
+  
+  //===================== start METHOD calculatePension() ============================================================
+  /**
+   * This method:
+   * <ol>
+   * <li>Calculates the pension for the current period as 6% of the grossPayThisPeriod.</li>  
+   * <li>Subtract the calculated amount from both the taxThisPay and taxYTD instance variables.</li>
+</li>
+   * </ol>
+   */ 
+  
+  public void calculatePension()
+  {
+    pensionThisPay = pensionYTD = grossThisPay * 0.06; //calculating company pension plan deductions
+
+    // System.out.println("(netThisPay before pension  : " + netThisPay + ")");
+    netThisPay = netYTD = grossThisPay - pensionThisPay; // setting the net sum
+    //System.out.println("(netThisPay after the 6% pension (" + grossThisPay * 0.06 + ") is: " + netThisPay + ")");
+
+    //System.out.println("(netThisPay before pension : " + netThisPay + ")");
+    netThisPay = netYTD = grossThisPay - pensionThisPay;
+    //System.out.println("(netThisPay (" + grossThisPay + ") after the 6% pension (" + grossThisPay * 0.06 + ") is: " + netThisPay + ")");    
+    
+  }
+
+  //===================== finish METHOD calculatePension() ============================================================
+  // ===================== start METHOD calculateSalary() ===========================================================
+  /**
+   * This method will only be called for objects for salaried employees with payType “S4”). <ol> <li>It calculates the gross
+   * pay for the current pay period by [?] for salaried employees (payType = “S4”) by dividing the value of the salary variable by thirteen. </li>
+   * <li>Adds the calculated amount to both the grossThisPay and grossYTD instance variables.</li> </ol>
+   */
   public void calculateSalary()
   {
     //System.out.println("(payType                    : " + payType + ")");
@@ -87,33 +135,34 @@ public class Employee implements Serializable, Testable
 
       grossThisPay += grossCurrentPay; // initializing 
       grossYTD += grossCurrentPay;    // initializing
-      //System.out.println("(grossThisPay               : " + grossThisPay + ")");
+      //System.out.println("(grossThisPay: " + grossThisPay + ")");
 
+      /*
+       pensionThisPay = pensionYTD = grossThisPay * 0.06; //calculating company pension plan deductions
 
-      pensionThisPay = pensionYTD = grossThisPay * 0.06; //calculating company pension plan deductions
-
-     // System.out.println("(netThisPay before pension  : " + netThisPay + ")");
-      netThisPay = netYTD = grossThisPay - pensionThisPay; // setting the net sum
-      System.out.println("(netThisPay after pension   : " + netThisPay + ")");
-
+       // System.out.println("(netThisPay before pension  : " + netThisPay + ")");
+       netThisPay = netYTD = grossThisPay - pensionThisPay; // setting the net sum
+       System.out.println("(netThisPay after the 6% pension (" + grossThisPay * 0.06 + ") is: " + netThisPay + ")");      
+       */      
     }
     else
     {
-      System.out.println("... not applicable since this is not a salaried worker.");
+      System.out.println("... calculateSalary() is not applicable since this is not a salaried worker.");
     }
+  }
+  // ===================== finish METHOD calculateSalary()  ===========================================================
 
-
-
-  } // end of calculateSalary
-  // ===================== METHOD calculateSalary() (bottom) ===========================================================
-
-  // ===================== METHOD calculateTax() (top) ===========================================================
+  // ===================== start METHOD calculateTax()  ===========================================================
+  /**
+   * This method: <ol> <li>Calculates the tax for the current period as 10% of the grossPayThisPeriod.</li> <li>Subtracts the calculated amount from
+   * both the taxThisPay and taxYTD instance variables.</li> </ol>
+   */
   public void calculateTax()
   {
     //double taxCurrentPay = 0.00; // tax for the current pay period
     //System.out.println("(grossThisPay           : " + grossThisPay + ")");
     //taxCurrentPay = grossThisPay * 0.10;
-    taxYTD = taxThisPay = grossThisPay * 0.10;
+    taxYTD = taxThisPay = grossThisPay * 0.10; //taxYTD +=
     //System.out.println("(Employee.calculateTax().taxCurrentPay: " + taxCurrentPay + ")");
     //System.out.println("(taxThisPay             : " + taxThisPay + ")");
     //taxThisPay = grossThisPay - taxCurrentPay;
@@ -123,13 +172,15 @@ public class Employee implements Serializable, Testable
     //System.out.println("(netThisPay before tax  : " + netThisPay + ")");
     netThisPay -= taxThisPay;
     netYTD -= taxYTD;
-    System.out.println("(netThisPay after tax   : " + netThisPay + ")");
-
-
+    //System.out.println("(netThisPay after the 10% tax (" + grossThisPay * 0.10 + ") is: " + netThisPay + ")");
   }
-  // ===================== METHOD calculateTax() (bottom) ===========================================================
+  // ===================== finish METHOD calculateTax()  ===========================================================
 
-  // ===================== METHOD calculateUnion() (top) =========================================================
+  // ===================== start METHOD calculateUnion()  =========================================================
+  /**
+   * This method: <ol> <li>Calculate the union dues for current pay period as a fixed rate $2,00.</li>
+   * <li>Subtract the calculated amount from both the netThisPay and netYTD instance variables[.]</li> </ol>
+   */
   public void calculateUnion()
   {
     if (payType.equalsIgnoreCase("HW"))
@@ -139,17 +190,23 @@ public class Employee implements Serializable, Testable
       //System.out.println("(netThisPay before union   : " + netThisPay + ")");
       netThisPay -= unionThisPay;
       netYTD -= unionYTD;
-      System.out.println("(netThisPay after union    : " + netThisPay + ")");
-
+      //System.out.println("(netThisPay after union (2.00) is: " + netThisPay + ")");
     }
     else
     {
-      System.out.println("... not applicable since this is not a union member.");
+      System.out.println("... calculateUnion() is not applicable since this is not a union member.");
     }
   }
-  // ===================== METHOD calculateUnion() (bottom) =========================================================
+  // ===================== finish METHOD calculateUnion()  =========================================================
 
-  // ===================== METHOD calculateWages() (top) ===========================================================
+  // ===================== start METHOD calculateWages()  ===========================================================
+  /**
+   * This method will only be called for objects for hourly paid employees with payType “HW”) <ol> <li>Calculates
+   * the gross pay for the current pay period for hourly rate employees (payType “HW” ) by multiplying the value of the salary variable by the value
+   * of hoursWorked (parameter 1).</li> <li>Adds the calculated amount to both the grossThisPay and grossYTD instance variables.</li> </ol>
+   *
+   * @param hoursWorked the amount of hours the employee has worked in 4 weeks
+   */
   public String calculateWages(double hoursWorked)
   {
     String retval = "";
@@ -161,27 +218,27 @@ public class Employee implements Serializable, Testable
       grossCurrentPay = Double.parseDouble(salary) * hoursWorked;
       grossThisPay += grossCurrentPay;
       grossYTD += grossCurrentPay;
-      //System.out.println("(grossThisPay              : " + grossThisPay + ")");
+      //System.out.println("(grossThisPay: " + grossThisPay + ")");
 
-      pensionThisPay = pensionYTD = grossThisPay * 0.06;
+      /*
+       pensionThisPay = pensionYTD = grossThisPay * 0.06;
 
-      //System.out.println("(netThisPay before pension : " + netThisPay + ")");
-      netThisPay = netYTD = grossThisPay - pensionThisPay;
-      System.out.println("(netThisPay after pension  : " + netThisPay + ")");
-
+       //System.out.println("(netThisPay before pension : " + netThisPay + ")");
+       netThisPay = netYTD = grossThisPay - pensionThisPay;
+       System.out.println("(netThisPay (" + grossThisPay + ") after the 6% pension (" + grossThisPay * 0.06 + ") is: " + netThisPay + ")");
+      
+       */
     }
     else
     {
-      System.out.println("... not applicable since this is not a wage-worker.");
+      System.out.println("... calculateWages() is not applicable since this is not a wage-worker.");
     }
-
-
+    
     return retval;
   }
-  // ===================== METHOD calculateWages() (bottom) =========================================================
+  // ===================== finish METHOD calculateWages() =========================================================
 
-  // ===================== METHOD formatDisplay() (top) ===========================================================
-  //-----------------------------------------------------------------formatDisplay()
+  // ===================== start METHOD formatDisplay() ===========================================================
   /**
    * In Order to test a class properly it is essential to be able to display the status of objects (ALL the data within the object). <p>Formats the
    * contents of the object into a String so that when displayed (by the application) it will make a "pretty" display.</p>
@@ -189,78 +246,74 @@ public class Employee implements Serializable, Testable
   public int formatDisplay(StringBuffer temp)
   {
     int retval = 0;
-    String timeStamp = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime()); //yyyy-MM-dd_HHmmss
+    
+    temp.append("\n" + "+++++++++Employee+++++++++");
+    temp.append("\n" + "employeeId : " + employeeId);
+    temp.append("\n" + "jobTitle   : " + jobTitle);
+    temp.append("\n" + "salary     : " + salary);    
+    temp.append("\n" + "payType    : " + payType);
+    super.formatDisplay(temp);
+    temp.append("\n" + "+++++end Employee+++++++++");
+
+
+    /*
+     String timeStamp = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime()); //yyyy-MM-dd_HHmmss
     
 
-    temp.append("\n" + "--------------------- formatDisplay() ---------------------");
+     temp.append("\n" + "--------------------- formatDisplay() ---------------------");
 
-    temp.append(String.format("\n" + "%-22s%15s%27s", "Seneca College Payslip", "Period 01", timeStamp)); //yyyy-MM-dd_HHmmss));
-    temp.append("\n" + "---- =======================================--------- =========="); // 39= 10- 10=
-    temp.append(String.format("\n" + "%4s%1s%-37s%2s", employeeId, " ", jobTitle, payType));
-    temp.append("\n");
-    temp.append(String.format("\n" + "%5s%-37s%11s%11s", " ", "INCOME", "ThisPay", "YearToDate"));
-    temp.append(String.format("\n" + "%7s%-35s%11.2f%11.2f", " ", "Gross Pay", grossThisPay, grossYTD));
-    temp.append(String.format("\n" + "%5s%-60s", " ", "DEDUCTIONS"));
-    temp.append(String.format("\n" + "%7s%-35s%11.2f%11.2f", " ", "Income Tax", taxThisPay, taxYTD));
-    temp.append(String.format("\n" + "%7s%-35s%11.2f%11.2f", " ", "Pension", pensionThisPay, pensionYTD));
+     temp.append(String.format("\n" + "%-22s%15s%27s", "Seneca College Payslip", "Period 01", timeStamp)); //yyyy-MM-dd_HHmmss));
+     temp.append("\n" + "---- =======================================--------- =========="); // 39= 10- 10=
+     temp.append(String.format("\n" + "%4s%1s%-37s%2s", employeeId, " ", jobTitle, payType));
+     temp.append("\n");
+     temp.append(String.format("\n" + "%5s%-37s%11s%11s", " ", "INCOME", "ThisPay", "YearToDate"));
+     temp.append(String.format("\n" + "%7s%-35s%11.2f%11.2f", " ", "Gross Pay", grossThisPay, grossYTD));
+     temp.append(String.format("\n" + "%5s%-60s", " ", "DEDUCTIONS"));
+     temp.append(String.format("\n" + "%7s%-35s%11.2f%11.2f", " ", "Income Tax", taxThisPay, taxYTD));
+     temp.append(String.format("\n" + "%7s%-35s%11.2f%11.2f", " ", "Pension", pensionThisPay, pensionYTD));
 
-    if (payType.equalsIgnoreCase("HW"))
-    {
-      temp.append(String.format("\n" + "%7s%-35s%11.2f%11.2f", " ", "Union Dues", unionThisPay, unionYTD));
-    }
-    if (payType.equalsIgnoreCase("S4"))
-    {
-      temp.append(String.format("\n" + "%7s%-35s", " ", "Union Dues"));
-    }
+     if (payType.equalsIgnoreCase("HW"))
+     {
+     temp.append(String.format("\n" + "%7s%-35s%11.2f%11.2f", " ", "Union Dues", unionThisPay, unionYTD));
+     }
+     if (payType.equalsIgnoreCase("S4"))
+     {
+     temp.append(String.format("\n" + "%7s%-35s", " ", "Union Dues"));
+     }
 
 
-    temp.append("\n");
-    temp.append(String.format("\n" + "%5s%-37s%11.2f%11.2f", " ", "NET PAY", netThisPay, netYTD));
-    temp.append(String.format("\n" + "%5s%-37s%11.2f", " ", "PAID IN TO BANK", netThisPay));
+     temp.append("\n");
+     temp.append(String.format("\n" + "%5s%-37s%11.2f%11.2f", " ", "NET PAY", netThisPay, netYTD));
+     temp.append(String.format("\n" + "%5s%-37s%11.2f", " ", "PAID IN TO BANK", netThisPay));
 
-    temp.append("\n" + "--------------------- finish formatDisplay() ---------------------");
+     temp.append("\n" + "--------------------- finish formatDisplay() ---------------------");
+     */
     return retval;
   }
-// =====================METHOD formatDisplay() (bottom) ===========================================================
-  // ===================== METHOD formatHeadings() (top) =========================================================
+// =====================finish METHOD formatDisplay()  ===========================================================
 
-  public static int formatHeadings(StringBuffer sb)
-  {
-    int retval = 0;
-    String timeStamp = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime()); //yyyy-MM-dd_HHmmss
-
-    try
-    {
-      //sb.append("\n" + "--------------------- start formatHeadings() ---------------------");
-      sb.append(String.format("\n" + "%-22s%15s%27s", "Seneca College Payslip", "Period 01", timeStamp + "\n"));
-      sb.append("\n" + "---- =======================================--------- =========="); // 39= 10- 10=
-
-      //sb.append("\n" + "--------------------- finish formatHeadings() ---------------------");
-
-    }
-    catch (Exception e)
-    {
-      System.out.println("******************************************************************");
-      System.out.println("Caught exception in formatReportHeadings_1() : " + e.getMessage());
-      System.out.println("... stack trace follows ...");
-      e.printStackTrace(System.out);
-      System.out.println("******************************************************************");
-
-    }
-    return retval;
-  }
-  // ===================== METHOD formatHeadings() (bottom) =========================================================
-
-  // ===================== METHOD formatPaySlip() (top) ==========================================================
+  // ================== start METHOD formatPaySlip()  ==========================================================
+  /**
+   * Appends the data from one object, formatted as a payslip, to the StringBuffer (parameter 1).
+   *
+   * @param sb
+   * @return int err (the error status)
+   */
   public int formatPaySlip(StringBuffer sb) // append data from employee
   {
     int err = 0;
-
+    
     try
     {
+      
+      // if {sb != null OR sb.lenth=0
+      //{ print header
+      // else
+      // don't print header
+      
 //      sb.append(String.format("\n" + "%-22s%15s%27s", "Seneca College Payslip", "Period 01", "yyyy-mm-dd"));
 //      sb.append("\n" + "---- =======================================--------- =========="); // 39= 10- 10=
-      sb.append(String.format("%4s%1s%-37s%2s", employeeId, " ", jobTitle, payType));
+      sb.append(String.format("\n" + "%4s%1s%-37s%2s", employeeId, " ", jobTitle, payType));
       sb.append("\n");
       sb.append(String.format("\n" + "%5s%-37s%11s%11s", " ", "INCOME", "ThisPay", "YearToDate"));
       sb.append(String.format("\n" + "%7s%-35s%11.2f%11.2f", " ", "Gross Pay", grossThisPay, grossYTD));
@@ -279,52 +332,60 @@ public class Employee implements Serializable, Testable
       sb.append(String.format("\n" + "%5s%-37s%11.2f%11.2f", " ", "NET PAY", netThisPay, netYTD));
       sb.append(String.format("\n" + "%5s%-37s%11.2f", " ", "PAID IN TO BANK", netThisPay));
       sb.append("\n");
-
+      
     }
     catch (Exception e)
     {
       System.out.println("******************************************************************");
-
+      
       System.out.println("Caught exception in formatReportData_1 : " + e.getMessage());
       System.out.println("... stack trace follows ...");
       e.printStackTrace(System.out);
       System.out.println("******************************************************************");
-
+      
     }
-
+    
     return err;
   }
-  // ===================== METHOD formatPaySlip() (bottom) ==========================================================
+  // ===================== finish METHOD formatPaySlip() ==========================================================
 
-  // =====================METHOD getData() (top) ===========================================================
-  //----------------------------------------------------------------------getData()
+  // =====================start METHOD getData()  ===========================================================
   /**
-   * getData(...) supplies a CSV with data to udate() the business object
+   *
+   * This method supplies a CSV with data to udate() the business object.
+   *
+   * @param sb
+   * @param dri
+   * @param sep
+   * @return int err (the error status)
+   * @throws IOException
    */
-  public static int getData(StringBuffer sb, DataReaderImpl_1 dri, String sep)
-    throws IOException
+  public static int getData(StringBuffer sb, DataReaderImpl_1 dri, String sep) throws IOException
   {
-    int retval = 0;
-
-    retval = Useful.getData(prompts, sb, dri, sep);
+    int err = 0;
+    
+    err = Useful.getData(prompts, sb, dri, sep);
     // deal with base-class object
-    //Person.getData(sb, br, "%");
+    err = Person.getData(sb, dri, "%");
+    
     sb.append(sep);
-    return retval;
+    
+    return err;
   }
-  // end of method
-  // =====================METHOD getData() (bottom) ===========================================================
+  // =====================finish METHOD getData() ===========================================================
 
-  // =====================METHOD getPrimaryKey() (top) ===========================================================
+  // =====================start METHOD getPrimaryKey()  ===========================================================
   /**
    * Supplies a primary key value for possible use with Hashtable or relational database storage applications.
+   *
+   * @return pk - the value of the primary key
    */
   public String getPrimaryKey()
   {
     //System.out.println("(entered getPK())");
 
     String pk = "";
-
+    
     if (!employeeId.contains(" "))
     {
       pk = employeeId;
@@ -332,17 +393,20 @@ public class Employee implements Serializable, Testable
     //System.out.println("(exiting getPK())");
     return pk;
   }
-  // =====================METHOD getPrimaryKey() (bottom) ===========================================================
+  // ===================== finish METHOD getPrimaryKey() ===========================================================
 
-  // =====================METHOD update() (top) ===========================================================
+  // =====================start METHOD update()  ===========================================================
   /**
-   * update() - inserts data from the StringBuffer, (param #1) into an empty object. The format of the StringBuffer is that provided by getData(...)
-   * in CSV format ... separator is first character of StringBuffer
+   * inserts data from the StringBuffer, (param #1) into an empty object. The format of the StringBuffer is that provided by getData(...) in CSV
+   * format ... separator is first character of StringBuffer.
+   *
+   * @param sb
+   * @return int err - the error status
    */
   public int update(StringBuffer sb)
   {
     //System.out.println("(entered Employee.update)");
-    int retval = 0;  // used to indicate status (0 = normal)
+    int err = 0;  // used to indicate status (0 = normal)
     String sep;      // separator value used by CSV format data
     StringTokenizer tk;       // to extract data
     String temp;    // for extracted data
@@ -360,6 +424,7 @@ public class Employee implements Serializable, Testable
     {
       // String, use as is
       employeeId = new String(temp);
+      //employeeId = Integer.parseInt(temp);
     }
 
     //System.out.println("(Employee.update().employeeId: " + employeeId + ")");
@@ -373,7 +438,7 @@ public class Employee implements Serializable, Testable
 
     //System.out.println("(Employee.update().jobTitle: " + jobTitle + ")");
 
-
+    
     temp = tk.nextToken();
     if (!temp.equals("\t"))
     {
@@ -383,20 +448,25 @@ public class Employee implements Serializable, Testable
 
     //System.out.println("(Employee.update().salary: " + salary + ")");
 
-
+    
     temp = tk.nextToken();
     if (!temp.equals("\t"))
     {
       // String, use as is
       payType = new String(temp);
     }
+    
+    temp = tk.nextToken();
+    if (!temp.equals("\t"))
+    {
+      super.update(new StringBuffer(temp));
+    }
 
     //System.out.println("(Employee.update().payType: " + payType + ")");
 
-
     //System.out.println("(exiting Employee.update())");
-    return retval; // indicate OK (i.e. no errors)
-  } // end of update    
-  // =====================METHOD update() (bottom) ===========================================================
-  //========================M.E.T.H.O.D.S. (bottom) =================================================================
+    return err; // indicate OK (i.e. no errors)
+  }
+  // =====================finish METHOD update()  =========================================================
+  //======================finish METHODS =================================================================
 }

@@ -1,96 +1,236 @@
-# Employee.txt - Test data/script for class Employee
+# Person.txt - Test data/script for class Person
 #
 # ***NOTE*** For a "missing data field" 
 # enter either an empty line or a single <TAB>
 #
 #
-#
-#
-# employeeId
-# jobTitle
-# salary
-# payType
-#
 # object 1
 #
 ###################Action1# update a new object
 #
-#
-1         # employeeId
-Cleaner   # jobTitle
-15.00     # salary
-HW        # payType
+## fields in class Employee
+1#employeeId
+Cleaner#jobTitle
+18#salary (hourly rate)
+HW#payType (hourly rate - paid weekly)
+## fields in class Person
+perry#familyName
+brian#givenName
+M#gender
+194#height
+## fields in class Phone
+416#area
+555#exchange
+1212#local
+9000#extension
+## fields in class Address
+123#number
+Main St.#street
+	#suite <TAB>
+Georgetown#city
+ON#province
+L7G 4S5#postcode
+CAN#country
 #
 # object 2
 #
 ###################Action1# update a new object
 #
+## fields in class Employee
+2#employeeId
+Procurement Manager#jobTitle
+60000#salary (per annum)
+S4#payType (salaried paid 13x4weekly per annum)
+## fields in class Person
+Smith#familyName
+Tony#givenName
+M#gender
+170#height
+## fields in class Phone
+905#area
+555#exchange
+1212#local
+	#extension <tab>
+## fields in class Address
+321#number
+Yonge#street
+1234#suite
+Toronto#city
+ON#province
+M5W 1E6#postcode
+#country - ****next line empty****
+
 #
-2         # employeeId
-Procurement Manager   # jobTitle
-60000.00  # salary
-S4        # payType
+#
+#
 #
 # object 3
 #
 ###################Action1# update a new object
 #
-#
-3         # employeeId
-Disposal Operative   # jobTitle
-18.00     # salary
-HW        # payType
+## fields in class Employee
+3#employeeId 
+Disposal Operative#jobTitle
+15#salary
+HW#payType (hourly rate - paid weekly) 
+## fields in class Person
+Smithers#familyName
+Gilbert#givenName
+M#gender
+164#height
+## fields in class Phone
+212#area
+555#exchange
+1212#local
+376#extension
+## fields in class Address
+12345#number
+Main Ave.#street
+	#suite <TAB>
+New York#city
+NY#province
+45678#postcode
+USA#country
 #
 # object 4
 #
 ###################Action1# update a new object
 #
-#
-4         # employeeId
-Cook      # jobTitle
-40000.00  # salary
-S4        # payType
+## fields in class Employee
+4#employeeId 
+Paper-folder#jobTitle
+20#salary
+HW#payType (hourly rate - paid weekly) 
+## fields in class Person
+Dover#familyName
+Ben#givenName
+M#gender
+156#height
+## fields in class Phone
+111#area
+222#exchange
+3333#local
+444#extension
+## fields in class Address
+55#number
+Hag Lane#street
+	#suite <TAB>
+Boring#city
+OR#province
+1357#postcode
+USA#country
 #
 # object 5
 #
 ###################Action1# update a new object
 #
-#
-5         # employeeId
-Java Developer   # jobTitle
-45000.00   # salary
-S4        # payType
+## fields in class Employee
+5#employeeId 
+In charge of the big door#jobTitle
+70000#salary
+S4#payType (salaried paid 13x4weekly per annum) 
+## fields in class Person
+Getoff#familyName
+Kent#givenName
+M#gender
+190#height
+## fields in class Phone
+555#area
+666#exchange
+7777#local
+888#extension
+## fields in class Address
+100#number
+Awesome St.#street
+	#suite <TAB>
+Acme#city
+WV#province
+10101#postcode
+USA#country
 #
 # object 6
 #
 ###################Action1# update a new object
 #
-#
-6         # employeeId
-Driver    # jobTitle
-20.00     # salary
-HW        # payType
+## fields in class Employee
+6#employeeId 
+Penguinologist#jobTitle
+28#salary
+HW#payType (hourly rate - paid weekly) 
+## fields in class Person
+Krabbs#familyName
+Lotta#givenName
+F#gender
+175#height
+## fields in class Phone
+666#area
+777#exchange
+8888#local
+999#extension
+## fields in class Address
+12#number
+Bathtub Row#street
+	#suite <TAB>
+Poopoo#city
+HI#province
+23456#postcode
+USA#country
 #
 # object 7
 #
 ###################Action1# update a new object
 #
-#
-7           # employeeId
-Accountant  # jobTitle
-45000.00    # salary
-S4          # payType
+## fields in class Employee
+7#employeeId 
+Rasputin Impersonator#jobTitle
+43000#salary
+S4#payType (hourly rate - paid weekly) 
+MacKrakken#familyName
+Phil#givenName
+M#gender
+188#height
+## fields in class Phone
+777#area
+888#exchange
+9999#local
+100#extension
+## fields in class Address
+23#number
+Digestion St.#street
+23#suite <TAB>
+My Large Intestine#city
+TX#province
+22233#postcode
+USA#country
 #
 # object 8
 #
 ###################Action1# update a new object
 #
+## fields in class Employee
+8#employeeId 
+DoodyCalls Technician#jobTitle
+21#salary
+HW#payType (hourly rate - paid weekly) 
+## fields in class Person
+de Alcantara Maria Fernando Miguel Rafael Gonzaga Xavier Joao Antonio Leopoldo Vitor Francisco de Assis Julio Amelio de Saxe-Coburgo-Gotha e Braganca#familyName#familyName
+Pedro#givenName
+M#gender
+156#height
+## fields in class Phone
+888#area
+999#exchange
+1111#local
+222#extension
+## fields in class Address
+345#number
+Hillbilly Ln.#street
+999#suite <TAB>
+#Bird in Hand#city
+Taumatawhakatangihangakoauauotamateapokaiwhenuakitanatahu#city
+PA#province
+98989#postcode
+USA#country
 #
-8         # employeeId
-Security Officer   # jobTitle
-20.00     # salary
-HW        # payType
-#
-#
-###################Action0# exit
+
 
